@@ -1,0 +1,11 @@
+{
+  "name": "Remix compliance-scanner",
+  "description": "Imported from GitHub: khushi9812/compliance-scanner",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

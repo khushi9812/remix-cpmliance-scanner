@@ -1,0 +1,4200 @@
+[
+  {
+    "id": "INSP-MU6MHZAW-SJWV",
+    "timestamp": 1789715667704,
+    "createdAt": "2026-09-18T07:14:27.704Z",
+    "imageFileName": "scan-1789715652800-4ljxa0.jpg",
+    "imageUrl": "/uploads/scan-1789715652800-4ljxa0.jpg",
+    "imageSizeKb": 0,
+    "extractedData": {
+      "productName": "Patanjali Dant Kanti Natural Toothpaste",
+      "brand": "Patanjali",
+      "category": "personal_care",
+      "netQuantity": "200 g",
+      "mrp": "₹ 100.00 (incl. of all taxes)",
+      "unitSalePrice": null,
+      "mfgDate": "05/24",
+      "expiryDate": "Best before 24 months from the date of manufacturing",
+      "batchNumber": "A240505",
+      "mfgName": "Patanjali Ayurved Limited",
+      "mfgAddress": "Unit-III, Patanjali Food & Herbal Park, Laksar Road, Padartha, Haridwar (Uttarakhand) - 249404",
+      "consumerCare": "1800 180 4108, feedback@patanjaliayurved.org",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Each 10g contains: Laung (Syzygium aromaticum) 10mg, Babool (Acacia arabica) 20mg, Tomar (Zanthoxylum alatum) 20mg, Pudina (Mentha spicata) 10mg, Vajradanti (Barleria prionitis) 10mg, Miswak (Salvadora persica) 10mg, Bakul (Mimusops elengi) 10mg, Vidang (Embelia ribes) 10mg, Neem (Azadirachta indica) 10mg, Turmeric (Curcuma longa) 10mg, Peelu (Salvadora oleoides) 10mg, Majuphal (Quercus infectoria) 10mg",
+      "fssaiLicense": null,
+      "barcode": "8904109400156",
+      "fields": [
+        {
+          "key": "brand",
+          "label": "Brand Name",
+          "value": "Patanjali",
+          "evidence": "Patanjali logo and text",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 25,
+            "y": 15,
+            "w": 50,
+            "h": 10
+          }
+        },
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Dant Kanti Natural Toothpaste",
+          "evidence": "Dant Kanti Natural Toothpaste text",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 20,
+            "y": 25,
+            "w": 60,
+            "h": 8
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "200 g",
+          "evidence": "Net Quantity 200 g",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 75,
+            "y": 85,
+            "w": 15,
+            "h": 5
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "MRP",
+          "value": "₹ 100.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 100.00 (incl. of all taxes)",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 10,
+            "y": 85,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price (USP)",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "05/24",
+          "evidence": "Date of Manufacture: 05/24",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before Date",
+          "value": "Best before 24 months from the date of manufacturing",
+          "evidence": "Expiry / Best Before Date: Best before 24 months from the date of manufacturing",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "A240505",
+          "evidence": "Batch Number: A240505",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Patanjali Ayurved Limited",
+          "evidence": "Manufacturer Name: Patanjali Ayurved Limited",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Unit-III, Patanjali Food & Herbal Park, Laksar Road, Padartha, Haridwar (Uttarakhand) - 249404",
+          "evidence": "Manufacturer Address: Unit-III, Patanjali Food & Herbal Park, Laksar Road, Padartha, Haridwar (Uttarakhand) - 249404",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800 180 4108, feedback@patanjaliayurved.org",
+          "evidence": "Consumer Care Contact: 1800 180 4108, feedback@patanjaliayurved.org",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": null
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 0.95,
+        "overallAssessment": "High quality image with clear text visibility for all statutory declarations."
+      },
+      "notes": "The product is a personal care item (toothpaste), hence FSSAI license is not applicable; it follows Ayurvedic drug licensing."
+    },
+    "compliance": {
+      "status": "PARTIAL_COMPLIANT",
+      "score": 88,
+      "passedWeight": 87,
+      "scoreableWeight": 99,
+      "passCount": 11,
+      "failCount": 1,
+      "reviewCount": 1,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 100.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "200 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Unit Sale Price (USP) absent for package > 100g/mL",
+          "required": "₹ per g / ₹ per 100g / ₹ per mL / ₹ per item",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(11) mandatory requirement effective since December 2022."
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "05/24",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best before 24 months from the date of manufacturing",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "A240505",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Patanjali Ayurved Limited",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Unit-III, Patanjali Food & Herbal Park, Laksar Road, Padartha, Haridwar (Uttarakhand) - 249404",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "1800 180 4108, feedback@patanjaliayurved.org",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Patanjali Dant Kanti Natural Toothpaste",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food commodity",
+          "required": "Applicable only to food items",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Each 10g contains: Laung (Syzygium aromaticum) 10mg, Babool (Acacia arabica) 20m...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food category (FSSAI not mandatory; BIS standard mark if applicable)",
+          "required": "FSSAI required only for food products",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Low image readability score (0.95/100) or lighting defect: good",
+          "required": "Clear contrast against background and legible font height",
+          "defectType": "UNREADABLE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspection of Patanjali Dant Kanti Natural Toothpaste confirms a partial compliance status under the Legal Metrology (Packaged Commodities) Rules, 2011, with a score of 88/100. While the package correctly displays the brand name, MRP, net quantity, batch number, manufacturing and expiry dates, and manufacturer details, it fails to declare the mandatory Unit Sale Price (USP). Consequently, the product is non-compliant regarding specific labeling requirements. This report serves as formal documentation for legal inspectors and consumer court proceedings regarding this violation.",
+    "aiEngineUsed": "Gemini Multimodal Vision (gemini-3.1-flash-lite)"
+  },
+  {
+    "id": "INSP-MU6LYHK2-TQ37",
+    "timestamp": 1789714758242,
+    "createdAt": "2026-09-18T06:59:18.242Z",
+    "imageFileName": "scan-1789714751050-il27fm.jpg",
+    "imageUrl": "/uploads/scan-1789714751050-il27fm.jpg",
+    "imageSizeKb": 120,
+    "extractedData": {
+      "productName": null,
+      "brand": "Sapphire Nuts",
+      "category": "packaged_food",
+      "netQuantity": null,
+      "mrp": null,
+      "unitSalePrice": null,
+      "mfgDate": null,
+      "expiryDate": null,
+      "batchNumber": null,
+      "mfgName": "ORBISIS FOOD PRIVATE LIMITED",
+      "mfgAddress": "1975 1st floor, Kucha Chelan, Khari Baoli, Delhi-110006",
+      "consumerCare": "+91-7428852017, trade@sapphirenuts.in",
+      "countryOfOrigin": null,
+      "vegNonVeg": null,
+      "ingredients": null,
+      "fssaiLicense": "10020011008233",
+      "barcode": "8908009934437",
+      "fields": [
+        {
+          "key": "mfgName",
+          "label": "Processed & Marketed By",
+          "value": "ORBISIS FOOD PRIVATE LIMITED",
+          "evidence": "ORBISIS FOOD PRIVATE LIMITED",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 50,
+            "y": 180,
+            "w": 900,
+            "h": 60
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Address",
+          "value": "1975 1st floor, Kucha Chelan, Khari Baoli, Delhi-110006",
+          "evidence": "1975 1st floor, Kucha Chelan, Khari Baoli, Delhi-110006",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 50,
+            "y": 240,
+            "w": 900,
+            "h": 50
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Customer Care",
+          "value": "+91-7428852017, trade@sapphirenuts.in",
+          "evidence": "+91-7428852017, trade@sapphirenuts.in",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 50,
+            "y": 300,
+            "w": 900,
+            "h": 100
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10020011008233",
+          "evidence": "Lic.No.10020011008233",
+          "confidence": 1,
+          "state": "present",
+          "boundingBox": {
+            "x": 70,
+            "y": 450,
+            "w": 600,
+            "h": 60
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 95,
+        "overallAssessment": "High quality image with clear text, though some mandatory fields like MRP and Net Quantity are missing from this specific view."
+      },
+      "notes": "The image provided is a partial view of the label. Mandatory declarations such as Net Quantity, MRP, Mfg Date, and Expiry Date are not visible in this frame."
+    },
+    "compliance": {
+      "status": "NON_COMPLIANT",
+      "score": 44,
+      "passedWeight": 48,
+      "scoreableWeight": 110,
+      "passCount": 5,
+      "failCount": 5,
+      "reviewCount": 5,
+      "criticalViolations": [
+        "Maximum Retail Price (MRP) Declaration (Rule 6(1)(e))",
+        "Net Quantity in Standard Metric Units (Rule 6(1)(b) & Rule 11)",
+        "Month and Year of Manufacture / Packing (Rule 6(1)(d))",
+        "Expiry Date / Best Before Period (Rule 6(1)(d) & FSSAI Regulation 2.2.2(9))",
+        "Country of Origin Declaration (Rule 6(10))"
+      ],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "MRP not declared or absent on visible surface",
+          "required": "MRP ₹ [Amount] incl. of all taxes (Mandatory)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Sec 36(1) of Legal Metrology Act, 2009 — penalty up to ₹25,000 for missing mandatory declaration."
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Net quantity declaration not found",
+          "required": "Standard metric declaration (e.g. 500 g, 1 kg, 250 mL, 1 L, 10 N)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Critical statutory defect under Rule 6(1)(b) & Rule 11."
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "USP not explicitly visible",
+          "required": "USP required if net quantity > 100g/mL or multi-piece",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Month and year of manufacture/packing absent",
+          "required": "Month & Year (e.g. 02/2026 or Feb 2026)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(d) violation."
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Expiry date / Best before declaration absent for perishable commodity",
+          "required": "Best Before / Expiry Date prominently printed",
+          "defectType": "ABSENCE",
+          "penaltyNote": "FSSAI Regulation 2.2.2(9) and Legal Metrology Rule 6(1)(d)."
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Batch / Lot code not detected on scanned surface",
+          "required": "Batch number or distinctive code for traceability",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "ORBISIS FOOD PRIVATE LIMITED",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "1975 1st floor, Kucha Chelan, Khari Baoli, Delhi-110006",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "+91-7428852017, trade@sapphirenuts.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Country of Origin not stated",
+          "required": "Country of Origin (e.g. 'Country of Origin: India')",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(10) statutory declaration for all goods."
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Generic commodity name unclear",
+          "required": "Generic or common name on principal display panel",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Veg/Non-Veg symbol not detected on this panel",
+          "required": "Green circle in square (Veg) or Brown triangle (Non-veg)",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Ingredients list not captured on current image",
+          "required": "Ingredients in descending order of weight",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10020011008233",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 95/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspection of Sapphire Nuts, manufactured by Orbisis Food Private Limited, confirms the product is non-compliant with the Legal Metrology (Packaged Commodities) Rules, 2011. The package fails to meet mandatory labeling standards, achieving a compliance score of 44/100. Critical violations include the absence of the Maximum Retail Price, Net Quantity in standard metric units, Month and Year of Manufacture, Expiry Date, and Country of Origin. These omissions violate Rules 6(1)(b), 6(1)(d), 6(1)(e), and 6(10), necessitating immediate regulatory action for consumer protection and statutory enforcement.",
+    "aiEngineUsed": "MetroScan Multimodal Vision Engine"
+  },
+  {
+    "id": "INSP-MU6LTDB6-7SWW",
+    "timestamp": 1789714519458,
+    "createdAt": "2026-09-18T06:55:19.458Z",
+    "imageFileName": "scan-1789714502815-04a2dq.jpg",
+    "imageUrl": "/uploads/scan-1789714502815-04a2dq.jpg",
+    "imageSizeKb": 125,
+    "extractedData": {
+      "productName": "Bisleri Packaged Drinking Water",
+      "brand": "Bisleri",
+      "category": "beverage",
+      "netQuantity": null,
+      "mrp": "₹ 20.00",
+      "unitSalePrice": "₹ 0.023/ml",
+      "mfgDate": "20/08/24",
+      "expiryDate": "19/02/27",
+      "batchNumber": "60 232-11 12:22",
+      "mfgName": null,
+      "mfgAddress": null,
+      "consumerCare": null,
+      "countryOfOrigin": null,
+      "vegNonVeg": "NOT_APPLICABLE",
+      "ingredients": null,
+      "fssaiLicense": null,
+      "barcode": null,
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Bisleri Packaged Drinking Water",
+          "evidence": "Bisleri PACKAGED DRINKING WATER",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 25,
+            "y": 25,
+            "w": 50,
+            "h": 40
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mrp",
+          "label": "MRP",
+          "value": "₹ 20.00",
+          "evidence": "MRP ₹ 20.00",
+          "confidence": 0.9,
+          "state": "present",
+          "boundingBox": {
+            "x": 550,
+            "y": 800,
+            "w": 150,
+            "h": 50
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.023/ml",
+          "evidence": "USP ₹ 0.023/ml",
+          "confidence": 0.85,
+          "state": "present",
+          "boundingBox": {
+            "x": 350,
+            "y": 850,
+            "w": 300,
+            "h": 50
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Manufacturing Date",
+          "value": "20/08/24",
+          "evidence": "MFD 20/08/24",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 550,
+            "y": 750,
+            "w": 200,
+            "h": 50
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry Date",
+          "value": "19/02/27",
+          "evidence": "USE BY 19/02/27",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 250,
+            "y": 800,
+            "w": 250,
+            "h": 50
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "60 232-11 12:22",
+          "evidence": "B.NO. 60 232-11 12:22",
+          "confidence": 0.9,
+          "state": "present",
+          "boundingBox": {
+            "x": 150,
+            "y": 750,
+            "w": 400,
+            "h": 50
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "slight",
+        "readabilityScore": 85,
+        "overallAssessment": "The label information is clear, but the manufacturing and regulatory details are missing from the visible portion of the bottle."
+      },
+      "notes": "The image captures the front label and the inkjet-printed batch/date information clearly. However, the back label containing manufacturer details and FSSAI information is not visible."
+    },
+    "compliance": {
+      "status": "NON_COMPLIANT",
+      "score": 46,
+      "passedWeight": 50,
+      "scoreableWeight": 110,
+      "passCount": 6,
+      "failCount": 6,
+      "reviewCount": 3,
+      "criticalViolations": [
+        "Net Quantity in Standard Metric Units (Rule 6(1)(b) & Rule 11)",
+        "Manufacturer / Packer / Importer Name (Rule 6(1)(a))",
+        "Complete Postal Address with PIN Code (Rule 6(1)(a))",
+        "Consumer Care Redressal Mechanism (Rule 6(1)(g))",
+        "Country of Origin Declaration (Rule 6(10))"
+      ],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Declared: \"₹ 20.00\" (Currency or 'incl. of all taxes' phrasing partially omitted)",
+          "required": "Must explicitly state ₹ symbol and 'inclusive of all taxes'",
+          "defectType": "FORMAT_DEFECT",
+          "penaltyNote": "Department circular No. WM-10(27)/2020 requires unambiguous 'incl. of all taxes'."
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Net quantity declaration not found",
+          "required": "Standard metric declaration (e.g. 500 g, 1 kg, 250 mL, 1 L, 10 N)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Critical statutory defect under Rule 6(1)(b) & Rule 11."
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.023/ml",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "20/08/24",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "19/02/27",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "60 232-11 12:22",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Manufacturer / Packer identity absent",
+          "required": "Corporate name of manufacturer or packer",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires complete corporate identity."
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Complete manufacturer address absent",
+          "required": "Postal address with street, district, state & PIN code",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires full address enabling consumer postal communication."
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Consumer care details absent",
+          "required": "Helpline phone number, email ID, and designation/address",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(g) mandatory redressal mechanism."
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Country of Origin not stated",
+          "required": "Country of Origin (e.g. 'Country of Origin: India')",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(10) statutory declaration for all goods."
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Bisleri Packaged Drinking Water",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Veg/Non-Veg symbol not detected on this panel",
+          "required": "Green circle in square (Veg) or Brown triangle (Non-veg)",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Ingredients list not captured on current image",
+          "required": "Ingredients in descending order of weight",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "FSSAI License number absent on food package",
+          "required": "FSSAI Logo and 14-digit registration number",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Mandatory under Food Safety & Standards Act, 2006."
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 85/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected Bisleri packaged drinking water sample is non-compliant with the Legal Metrology (Packaged Commodities) Rules, 2011, achieving a score of 46/100. Critical violations include the absence of mandatory declarations: Net Quantity in standard metric units, manufacturer details, complete postal address with PIN code, consumer care redressal mechanism, and country of origin. While MRP, manufacturing date, and expiry date are present, the omission of these statutory requirements renders the product legally deficient. Consequently, this package fails to meet essential consumer protection standards.",
+    "aiEngineUsed": "Google Gemini Vision API (gemini-3.1-flash-lite)"
+  },
+  {
+    "id": "INSP-MU6LRKAU-K8HL",
+    "timestamp": 1789714435206,
+    "createdAt": "2026-09-18T06:53:55.206Z",
+    "imageFileName": "scan-1789714421100-s2etd0.png",
+    "imageUrl": "/uploads/scan-1789714421100-s2etd0.png",
+    "imageSizeKb": 0,
+    "extractedData": {
+      "productName": null,
+      "brand": null,
+      "category": "other",
+      "netQuantity": null,
+      "mrp": null,
+      "unitSalePrice": null,
+      "mfgDate": null,
+      "expiryDate": null,
+      "batchNumber": null,
+      "mfgName": null,
+      "mfgAddress": null,
+      "consumerCare": null,
+      "countryOfOrigin": null,
+      "vegNonVeg": null,
+      "ingredients": null,
+      "fssaiLicense": null,
+      "barcode": null,
+      "fields": [],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 0,
+        "overallAssessment": "The provided image is a solid green color with no text, product information, or packaging details visible."
+      },
+      "notes": "The image contains no product packaging or text. It is a solid color block."
+    },
+    "compliance": {
+      "status": "NON_COMPLIANT",
+      "score": 15,
+      "passedWeight": 14,
+      "scoreableWeight": 93,
+      "passCount": 0,
+      "failCount": 7,
+      "reviewCount": 5,
+      "criticalViolations": [
+        "Maximum Retail Price (MRP) Declaration (Rule 6(1)(e))",
+        "Net Quantity in Standard Metric Units (Rule 6(1)(b) & Rule 11)",
+        "Month and Year of Manufacture / Packing (Rule 6(1)(d))",
+        "Manufacturer / Packer / Importer Name (Rule 6(1)(a))",
+        "Complete Postal Address with PIN Code (Rule 6(1)(a))",
+        "Consumer Care Redressal Mechanism (Rule 6(1)(g))",
+        "Country of Origin Declaration (Rule 6(10))"
+      ],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "MRP not declared or absent on visible surface",
+          "required": "MRP ₹ [Amount] incl. of all taxes (Mandatory)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Sec 36(1) of Legal Metrology Act, 2009 — penalty up to ₹25,000 for missing mandatory declaration."
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Net quantity declaration not found",
+          "required": "Standard metric declaration (e.g. 500 g, 1 kg, 250 mL, 1 L, 10 N)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Critical statutory defect under Rule 6(1)(b) & Rule 11."
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "USP not explicitly visible",
+          "required": "USP required if net quantity > 100g/mL or multi-piece",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Month and year of manufacture/packing absent",
+          "required": "Month & Year (e.g. 02/2026 or Feb 2026)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(d) violation."
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Expiry date not identified on current face",
+          "required": "Mandatory for food, pharma, and cosmetics",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Batch / Lot code not detected on scanned surface",
+          "required": "Batch number or distinctive code for traceability",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Manufacturer / Packer identity absent",
+          "required": "Corporate name of manufacturer or packer",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires complete corporate identity."
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Complete manufacturer address absent",
+          "required": "Postal address with street, district, state & PIN code",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires full address enabling consumer postal communication."
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Consumer care details absent",
+          "required": "Helpline phone number, email ID, and designation/address",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(g) mandatory redressal mechanism."
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Country of Origin not stated",
+          "required": "Country of Origin (e.g. 'Country of Origin: India')",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(10) statutory declaration for all goods."
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Generic commodity name unclear",
+          "required": "Generic or common name on principal display panel",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food commodity",
+          "required": "Applicable only to food items",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Single-component or non-compound product",
+          "required": "Applicable to compound/food products",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food category (FSSAI not mandatory; BIS standard mark if applicable)",
+          "required": "FSSAI required only for food products",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Low image readability score (0/100) or lighting defect: good",
+          "required": "Clear contrast against background and legible font height",
+          "defectType": "UNREADABLE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaged product is strictly non-compliant with the Legal Metrology (Packaged Commodities) Rules, 2011. The package failed seven critical statutory requirements, scoring 15/100. Essential declarations are entirely missing, specifically the Maximum Retail Price (Rule 6(1)(e)), Net Quantity (Rule 6(1)(b) & 11), Month/Year of Manufacture (Rule 6(1)(d)), Manufacturer/Packer details (Rule 6(1)(a)), complete postal address with PIN code (Rule 6(1)(a)), consumer care redressal mechanism (Rule 6(1)(g)), and Country of Origin (Rule 6(10)). Consequently, the product violates mandatory labeling standards, necessitating immediate enforcement action under prevailing regulations.",
+    "aiEngineUsed": "Google Gemini Vision API (gemini-3.1-flash-lite)"
+  },
+  {
+    "id": "INSP-MU6LGBVD-7VWC",
+    "timestamp": 1789713911065,
+    "createdAt": "2026-09-18T06:45:11.065Z",
+    "imageFileName": "scan-1789713875046-x7tj3x.jpg",
+    "imageUrl": "/uploads/scan-1789713875046-x7tj3x.jpg",
+    "imageSizeKb": 125,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6L4B0W-D07P",
+    "timestamp": 1789713350096,
+    "createdAt": "2026-09-18T06:35:50.096Z",
+    "imageFileName": "scan-1789713315069-9vjxmn.jpg",
+    "imageUrl": "/uploads/scan-1789713315069-9vjxmn.jpg",
+    "imageSizeKb": 120,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6L2ARV-B46M",
+    "timestamp": 1789713256459,
+    "createdAt": "2026-09-18T06:34:16.459Z",
+    "imageFileName": "scan-1789713220440-i7eonv.jpg",
+    "imageUrl": "/uploads/scan-1789713220440-i7eonv.jpg",
+    "imageSizeKb": 125,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6KOZHR-72G3",
+    "timestamp": 1789712635311,
+    "createdAt": "2026-09-18T06:23:55.311Z",
+    "imageFileName": "scan-1789712614073-ruw8v5.jpg",
+    "imageUrl": "/uploads/scan-1789712614073-ruw8v5.jpg",
+    "imageSizeKb": 87,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6KMMAZ-SPGN",
+    "timestamp": 1789712524907,
+    "createdAt": "2026-09-18T06:22:04.907Z",
+    "imageFileName": "scan-1789712502365-k2u75o.jpg",
+    "imageUrl": "/uploads/scan-1789712502365-k2u75o.jpg",
+    "imageSizeKb": 125,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6KHGMK-ZHGI",
+    "timestamp": 1789712284268,
+    "createdAt": "2026-09-18T06:18:04.268Z",
+    "imageFileName": "scan-1789712262248-pl6mzw.jpg",
+    "imageUrl": "/uploads/scan-1789712262248-pl6mzw.jpg",
+    "imageSizeKb": 0,
+    "extractedData": {
+      "productName": "Crispy Wheat Crackers with Roasted Sesame",
+      "brand": "Heritage Bakers Ltd",
+      "category": "packaged_food",
+      "netQuantity": "250 g",
+      "mrp": "₹ 45.00 (incl. of all taxes)",
+      "unitSalePrice": "₹ 0.18 / g",
+      "mfgDate": "02/2026",
+      "expiryDate": "Best Before 6 months from packaging",
+      "batchNumber": "LOT-B26-094",
+      "mfgName": "Heritage Confectionery & Foods Pvt Ltd",
+      "mfgAddress": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+      "consumerCare": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+      "countryOfOrigin": "India",
+      "vegNonVeg": "VEG",
+      "ingredients": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, Raising Agents (INS 500ii)",
+      "fssaiLicense": "10019043002847",
+      "barcode": "8901030894215",
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": "Crispy Wheat Crackers with Roasted Sesame",
+          "evidence": "CRISPY WHEAT CRACKERS",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 12,
+            "w": 70,
+            "h": 10
+          }
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": "250 g",
+          "evidence": "Net Qty: 250 g",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 32,
+            "w": 25,
+            "h": 6
+          }
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price",
+          "value": "₹ 45.00 (incl. of all taxes)",
+          "evidence": "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
+          "confidence": 0.97,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 32,
+            "w": 35,
+            "h": 7
+          }
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": "₹ 0.18 / g",
+          "evidence": "USP: ₹ 0.18 per g",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 40,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": "02/2026",
+          "evidence": "Mfg: 02/2026",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 48,
+            "w": 25,
+            "h": 5
+          }
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry / Best Before",
+          "value": "Best Before 6 months from packaging",
+          "evidence": "BEST BEFORE 6 MONTHS FROM PKG",
+          "confidence": 0.93,
+          "state": "present",
+          "boundingBox": {
+            "x": 18,
+            "y": 55,
+            "w": 40,
+            "h": 6
+          }
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": "LOT-B26-094",
+          "evidence": "B.No. LOT-B26-094",
+          "confidence": 0.96,
+          "state": "present",
+          "boundingBox": {
+            "x": 60,
+            "y": 48,
+            "w": 28,
+            "h": 5
+          }
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": "Heritage Confectionery & Foods Pvt Ltd",
+          "evidence": "Mfd by: Heritage Confectionery & Foods Pvt Ltd",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 65,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "evidence": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru - 560058",
+          "confidence": 0.94,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 72,
+            "w": 70,
+            "h": 8
+          }
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Contact",
+          "value": "1800-425-9988 | care@heritagebakers.in",
+          "evidence": "Consumer Care: 1800-425-9988 care@heritagebakers.in",
+          "confidence": 0.92,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 82,
+            "w": 70,
+            "h": 6
+          }
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": "India",
+          "evidence": "Country of Origin: India",
+          "confidence": 0.98,
+          "state": "present",
+          "boundingBox": {
+            "x": 15,
+            "y": 90,
+            "w": 30,
+            "h": 5
+          }
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License",
+          "value": "10019043002847",
+          "evidence": "fssai Lic. No. 10019043002847",
+          "confidence": 0.95,
+          "state": "present",
+          "boundingBox": {
+            "x": 55,
+            "y": 90,
+            "w": 35,
+            "h": 5
+          }
+        }
+      ],
+      "imageQuality": {
+        "lighting": "good",
+        "blur": "sharp",
+        "glare": "none",
+        "readabilityScore": 92,
+        "overallAssessment": "High contrast capture, clear font legibility"
+      },
+      "notes": "Visual transcription completed with verified Legal Metrology declarations."
+    },
+    "compliance": {
+      "status": "COMPLIANT",
+      "score": 100,
+      "passedWeight": 110,
+      "scoreableWeight": 110,
+      "passCount": 15,
+      "failCount": 0,
+      "reviewCount": 0,
+      "criticalViolations": [],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "₹ 45.00 (incl. of all taxes)",
+          "required": "MRP declared with currency and tax disclosure",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 10,
+          "status": "PASS",
+          "observed": "250 g",
+          "required": "Net quantity in standard metric units",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "₹ 0.18 / g",
+          "required": "Unit sale price declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "02/2026",
+          "required": "Month & year of manufacture declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Best Before 6 months from packaging",
+          "required": "Expiry or best before clearly printed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "LOT-B26-094",
+          "required": "Batch code clearly identifiable",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Heritage Confectionery & Foods Pvt Ltd",
+          "required": "Manufacturer / packer identified",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
+          "required": "Complete registered address with PIN code",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 8,
+          "status": "PASS",
+          "observed": "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
+          "required": "Active consumer care contact channels provided",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 7,
+          "status": "PASS",
+          "observed": "India",
+          "required": "Country of Origin declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Crispy Wheat Crackers with Roasted Sesame",
+          "required": "Common commodity name declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 5,
+          "status": "PASS",
+          "observed": "Vegetarian Symbol (Green dot in square)",
+          "required": "FSSAI Veg/Non-Veg logo displayed",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Whole Wheat Flour (68%), Edible Vegetable Oil, Sesame Seeds (4%), Iodized Salt, ...",
+          "required": "Ingredients listed in descending sequence",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "FSSAI Lic No: 10019043002847",
+          "required": "14-digit license number declared",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 6,
+          "status": "PASS",
+          "observed": "Readability score: 92/100, Lighting: good",
+          "required": "High contrast and legible font declarations",
+          "defectType": "NONE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaging for Crispy Wheat Crackers with Roasted Sesame satisfies statutory mandates under the Legal Metrology (Packaged Commodities) Rules, 2011. Key declarations including Maximum Retail Price (₹ 45.00 (incl. of all taxes)), net quantity (250 g), manufacturing details, and customer care grievance redressal are clearly legible with high contrast. The label exhibits compliant typography without misleading declarations.",
+    "aiEngineUsed": "Local Precision Vision & Rule Extraction Engine"
+  },
+  {
+    "id": "INSP-MU6KGKTN-12H2",
+    "timestamp": 1789712243051,
+    "createdAt": "2026-09-18T06:17:23.051Z",
+    "imageFileName": "scan-1789712204041-88vvfz.jpg",
+    "imageUrl": "/uploads/scan-1789712204041-88vvfz.jpg",
+    "imageSizeKb": 0,
+    "extractedData": {
+      "productName": null,
+      "brand": null,
+      "category": "other",
+      "netQuantity": null,
+      "mrp": null,
+      "unitSalePrice": null,
+      "mfgDate": null,
+      "expiryDate": null,
+      "batchNumber": null,
+      "mfgName": null,
+      "mfgAddress": null,
+      "consumerCare": null,
+      "countryOfOrigin": null,
+      "vegNonVeg": null,
+      "ingredients": null,
+      "fssaiLicense": null,
+      "barcode": null,
+      "fields": [
+        {
+          "key": "productName",
+          "label": "Product Name",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "netQuantity",
+          "label": "Net Quantity",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mrp",
+          "label": "Maximum Retail Price (MRP)",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "unitSalePrice",
+          "label": "Unit Sale Price",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgDate",
+          "label": "Date of Manufacture",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "expiryDate",
+          "label": "Expiry Date",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "batchNumber",
+          "label": "Batch Number",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgName",
+          "label": "Manufacturer Name",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "mfgAddress",
+          "label": "Manufacturer Address",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "consumerCare",
+          "label": "Consumer Care Details",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "countryOfOrigin",
+          "label": "Country of Origin",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        },
+        {
+          "key": "fssaiLicense",
+          "label": "FSSAI License Number",
+          "value": null,
+          "evidence": null,
+          "confidence": 0,
+          "state": "missing",
+          "boundingBox": null
+        }
+      ],
+      "imageQuality": {
+        "lighting": "dim",
+        "blur": "blurry",
+        "glare": "none",
+        "readabilityScore": 0,
+        "overallAssessment": "The provided image is a solid gray block with no visible product, packaging, or text. Compliance analysis cannot be performed."
+      },
+      "notes": "No packaging or text was detected in the provided image."
+    },
+    "compliance": {
+      "status": "NON_COMPLIANT",
+      "score": 15,
+      "passedWeight": 14,
+      "scoreableWeight": 93,
+      "passCount": 0,
+      "failCount": 7,
+      "reviewCount": 5,
+      "criticalViolations": [
+        "Maximum Retail Price (MRP) Declaration (Rule 6(1)(e))",
+        "Net Quantity in Standard Metric Units (Rule 6(1)(b) & Rule 11)",
+        "Month and Year of Manufacture / Packing (Rule 6(1)(d))",
+        "Manufacturer / Packer / Importer Name (Rule 6(1)(a))",
+        "Complete Postal Address with PIN Code (Rule 6(1)(a))",
+        "Consumer Care Redressal Mechanism (Rule 6(1)(g))",
+        "Country of Origin Declaration (Rule 6(10))"
+      ],
+      "rules": [
+        {
+          "ruleId": "RULE_01_MRP",
+          "name": "Maximum Retail Price (MRP) Declaration",
+          "section": "Rule 6(1)(e)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "MRP not declared or absent on visible surface",
+          "required": "MRP ₹ [Amount] incl. of all taxes (Mandatory)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Sec 36(1) of Legal Metrology Act, 2009 — penalty up to ₹25,000 for missing mandatory declaration."
+        },
+        {
+          "ruleId": "RULE_02_NET_QTY",
+          "name": "Net Quantity in Standard Metric Units",
+          "section": "Rule 6(1)(b) & Rule 11",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 10,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Net quantity declaration not found",
+          "required": "Standard metric declaration (e.g. 500 g, 1 kg, 250 mL, 1 L, 10 N)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Critical statutory defect under Rule 6(1)(b) & Rule 11."
+        },
+        {
+          "ruleId": "RULE_03_USP",
+          "name": "Unit Sale Price (USP)",
+          "section": "Rule 6(11)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+          "weight": 8,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "USP not explicitly visible",
+          "required": "USP required if net quantity > 100g/mL or multi-piece",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_04_MFG_DATE",
+          "name": "Month and Year of Manufacture / Packing",
+          "section": "Rule 6(1)(d)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Month and year of manufacture/packing absent",
+          "required": "Month & Year (e.g. 02/2026 or Feb 2026)",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(d) violation."
+        },
+        {
+          "ruleId": "RULE_05_EXPIRY_DATE",
+          "name": "Expiry Date / Best Before Period",
+          "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Expiry date not identified on current face",
+          "required": "Mandatory for food, pharma, and cosmetics",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_06_BATCH_NO",
+          "name": "Batch, Lot, or Code Identification",
+          "section": "Rule 6(1)(f)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Batch / Lot code not detected on scanned surface",
+          "required": "Batch number or distinctive code for traceability",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_07_MFG_NAME",
+          "name": "Manufacturer / Packer / Importer Name",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Manufacturer / Packer identity absent",
+          "required": "Corporate name of manufacturer or packer",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires complete corporate identity."
+        },
+        {
+          "ruleId": "RULE_08_MFG_ADDRESS",
+          "name": "Complete Postal Address with PIN Code",
+          "section": "Rule 6(1)(a)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Complete manufacturer address absent",
+          "required": "Postal address with street, district, state & PIN code",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(a) requires full address enabling consumer postal communication."
+        },
+        {
+          "ruleId": "RULE_09_CONSUMER_CARE",
+          "name": "Consumer Care Redressal Mechanism",
+          "section": "Rule 6(1)(g)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 8,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Consumer care details absent",
+          "required": "Helpline phone number, email ID, and designation/address",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(1)(g) mandatory redressal mechanism."
+        },
+        {
+          "ruleId": "RULE_10_COUNTRY_ORIGIN",
+          "name": "Country of Origin Declaration",
+          "section": "Rule 6(10)",
+          "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+          "weight": 7,
+          "critical": true,
+          "scoreContribution": 0,
+          "status": "FAIL",
+          "observed": "Country of Origin not stated",
+          "required": "Country of Origin (e.g. 'Country of Origin: India')",
+          "defectType": "ABSENCE",
+          "penaltyNote": "Rule 6(10) statutory declaration for all goods."
+        },
+        {
+          "ruleId": "RULE_11_GENERIC_NAME",
+          "name": "Generic or Common Commodity Name",
+          "section": "Rule 6(1)(c)",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Generic commodity name unclear",
+          "required": "Generic or common name on principal display panel",
+          "defectType": "ABSENCE"
+        },
+        {
+          "ruleId": "RULE_12_VEG_NONVEG",
+          "name": "Vegetarian / Non-Vegetarian Logo",
+          "section": "FSSAI Regulation 2.2.2(4)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 5,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food commodity",
+          "required": "Applicable only to food items",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_13_INGREDIENTS",
+          "name": "Quantitative List of Ingredients",
+          "section": "FSSAI Regulation 2.2.2(2)",
+          "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Single-component or non-compound product",
+          "required": "Applicable to compound/food products",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_14_FSSAI_LICENSE",
+          "name": "FSSAI Logo and 14-Digit License Number",
+          "section": "FSSAI (Food Safety and Standards Act, 2006)",
+          "statute": "Food Safety & Standards Authority of India Regulations",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "NOT_APPLICABLE",
+          "observed": "Non-food category (FSSAI not mandatory; BIS standard mark if applicable)",
+          "required": "FSSAI required only for food products",
+          "defectType": "NONE"
+        },
+        {
+          "ruleId": "RULE_15_PDP_CONTRAST",
+          "name": "Principal Display Panel (PDP) & Font Legibility",
+          "section": "Rule 7 & Fourth Schedule",
+          "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+          "weight": 6,
+          "critical": false,
+          "scoreContribution": 0,
+          "status": "REVIEW",
+          "observed": "Low image readability score (0/100) or lighting defect: dim",
+          "required": "Clear contrast against background and legible font height",
+          "defectType": "UNREADABLE"
+        }
+      ]
+    },
+    "inspectorSummary": "The inspected packaged product is not compliant with the Legal Metrology (Packaged Commodities) Rules, 2011, scoring a critical compliance rating of 15/100. The package fails seven statutory rules due to the complete absence of mandatory declarations. Specifically, the Maximum Retail Price under Rule 6(1)(e), Net Quantity under Rule 6(1)(b), Manufacturing Date under Rule 6(1)(d), Manufacturer Name and Address under Rule 6(1)(a), Consumer Care details under Rule 6(1)(g), and Country of Origin under Rule 6(10) are entirely missing on this label.",
+    "aiEngineUsed": "Google Gemini Vision API (gemini-3.5-flash)"
+  }
+]

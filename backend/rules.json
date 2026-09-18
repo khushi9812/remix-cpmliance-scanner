@@ -1,0 +1,152 @@
+[
+  {
+    "id": "RULE_01_MRP",
+    "name": "Maximum Retail Price (MRP) Declaration",
+    "section": "Rule 6(1)(e)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 10,
+    "critical": true,
+    "description": "MRP must be clearly declared with Indian Rupee symbol (₹ or Rs.) and explicitly state 'inclusive of all taxes' (or 'incl. of all taxes'). Rounding must follow standard currency denomination.",
+    "checkType": "mrp_format"
+  },
+  {
+    "id": "RULE_02_NET_QTY",
+    "name": "Net Quantity in Standard Metric Units",
+    "section": "Rule 6(1)(b) & Rule 11",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 10,
+    "critical": true,
+    "description": "Net quantity must be declared using metric units (g, kg, mL, L, m, cm, or N/units) without misleading non-standard qualifiers like 'Jumbo', 'Family Pack', or 'Approximate'.",
+    "checkType": "net_quantity"
+  },
+  {
+    "id": "RULE_03_USP",
+    "name": "Unit Sale Price (USP)",
+    "section": "Rule 6(11)",
+    "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2021",
+    "weight": 8,
+    "critical": false,
+    "description": "Unit Sale Price (e.g. ₹/g, ₹/mL, ₹/kg, ₹/piece) is mandatory on packages containing net quantity greater than 100g/100mL or multi-piece retail packs.",
+    "checkType": "unit_sale_price"
+  },
+  {
+    "id": "RULE_04_MFG_DATE",
+    "name": "Month and Year of Manufacture / Packing",
+    "section": "Rule 6(1)(d)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 8,
+    "critical": true,
+    "description": "The month and year of manufacture or pre-packing must be prominently printed on the package (e.g., 'Mfg Date: 03/2026' or 'Packed: Mar 2026').",
+    "checkType": "mfg_date"
+  },
+  {
+    "id": "RULE_05_EXPIRY_DATE",
+    "name": "Expiry Date / Best Before Period",
+    "section": "Rule 6(1)(d) & FSSAI Regulation 2.2.2(9)",
+    "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+    "weight": 8,
+    "critical": true,
+    "description": "Perishable goods, cosmetics, and packaged food must declare an expiry date ('Expiry Date: DD/MM/YYYY') or 'Best Before X months from packaging'.",
+    "checkType": "expiry_date"
+  },
+  {
+    "id": "RULE_06_BATCH_NO",
+    "name": "Batch, Lot, or Code Identification",
+    "section": "Rule 6(1)(f)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 6,
+    "critical": false,
+    "description": "A batch number, lot number, or distinctive code identifying the production lot must be legibly printed for traceability.",
+    "checkType": "batch_number"
+  },
+  {
+    "id": "RULE_07_MFG_NAME",
+    "name": "Manufacturer / Packer / Importer Name",
+    "section": "Rule 6(1)(a)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 8,
+    "critical": true,
+    "description": "Name of the manufacturer, packer, or importer must be clearly identified with appropriate prefix ('Manufactured by', 'Packed by', or 'Imported by').",
+    "checkType": "mfg_name"
+  },
+  {
+    "id": "RULE_08_MFG_ADDRESS",
+    "name": "Complete Postal Address with PIN Code",
+    "section": "Rule 6(1)(a)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 8,
+    "critical": true,
+    "description": "The complete registered address of the manufacturer or packer must include street name, city/district, state, and 6-digit postal PIN code.",
+    "checkType": "mfg_address"
+  },
+  {
+    "id": "RULE_09_CONSUMER_CARE",
+    "name": "Consumer Care Redressal Mechanism",
+    "section": "Rule 6(1)(g)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 8,
+    "critical": true,
+    "description": "Package must designate a consumer care person, official customer care telephone helpline, active email ID, and postal address for grievances.",
+    "checkType": "consumer_care"
+  },
+  {
+    "id": "RULE_10_COUNTRY_ORIGIN",
+    "name": "Country of Origin Declaration",
+    "section": "Rule 6(10)",
+    "statute": "Legal Metrology (Packaged Commodities) Amendment Rules, 2017",
+    "weight": 7,
+    "critical": true,
+    "description": "Every package must prominently declare Country of Origin (e.g. 'Country of Origin: India', 'Made in India', or overseas country).",
+    "checkType": "country_of_origin"
+  },
+  {
+    "id": "RULE_11_GENERIC_NAME",
+    "name": "Generic or Common Commodity Name",
+    "section": "Rule 6(1)(c)",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 6,
+    "critical": false,
+    "description": "The common or generic name of the commodity must be stated on the principal display panel to inform consumers of the true nature of the contents.",
+    "checkType": "generic_name"
+  },
+  {
+    "id": "RULE_12_VEG_NONVEG",
+    "name": "Vegetarian / Non-Vegetarian Logo",
+    "section": "FSSAI Regulation 2.2.2(4)",
+    "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+    "weight": 5,
+    "critical": false,
+    "description": "Packaged food items must display the prescribed green dot inside a green outlined square (Vegetarian) or brown triangle inside a square (Non-Vegetarian).",
+    "checkType": "veg_nonveg"
+  },
+  {
+    "id": "RULE_13_INGREDIENTS",
+    "name": "Quantitative List of Ingredients",
+    "section": "FSSAI Regulation 2.2.2(2)",
+    "statute": "Food Safety and Standards (Packaging and Labelling) Regulations",
+    "weight": 6,
+    "critical": false,
+    "description": "Ingredients must be listed in descending order of incoming weight (m/m) or volume (v/v) at the time of manufacture.",
+    "checkType": "ingredients"
+  },
+  {
+    "id": "RULE_14_FSSAI_LICENSE",
+    "name": "FSSAI Logo and 14-Digit License Number",
+    "section": "FSSAI (Food Safety and Standards Act, 2006)",
+    "statute": "Food Safety & Standards Authority of India Regulations",
+    "weight": 6,
+    "critical": false,
+    "description": "All food products must carry the official FSSAI logo alongside the 14-digit state or central manufacturing/repacking license number.",
+    "checkType": "fssai_license"
+  },
+  {
+    "id": "RULE_15_PDP_CONTRAST",
+    "name": "Principal Display Panel (PDP) & Font Legibility",
+    "section": "Rule 7 & Fourth Schedule",
+    "statute": "Legal Metrology (Packaged Commodities) Rules, 2011",
+    "weight": 6,
+    "critical": false,
+    "description": "All mandatory declarations must be printed in high-contrast color against background, meeting minimum font height requirements corresponding to net weight.",
+    "checkType": "pdp_contrast"
+  }
+]
