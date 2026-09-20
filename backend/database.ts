@@ -1,271 +1,152 @@
-import fs from "fs";
-import path from "path";
+import { Db } from "mongodb";
+import { getMongoDatabase } from "../src/lib/mongodb";
 import { InspectionDetail } from "../src/types/inspection";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DB_FILE = path.join(DATA_DIR, "inspections.json");
-const SQLITE_FILE = path.join(DATA_DIR, "inspections.db");
+let database: Db | null = null;
+let connectionError: Error | null = null;
+let lastConnectAttempt = 0;
+const RETRY_INTERVAL_MS = 10000;
+let sessionInspections: InspectionDetail[] = [];
 
-function ensureDirectoryExists() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+const DEFAULT_DB_NAME = "legal_metrology_db";
+
+export async function getMongoDb(): Promise<Db | null> {
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    return null;
   }
-}
-
-// ---------------------------------------------------------------------------
-// SQLite Table Initialization
-// Table: inspections (Stores full JSON snapshot alongside indexed search columns)
-// ---------------------------------------------------------------------------
-let sqliteDb: any = null;
-
-function getDatabaseSyncClass() {
-  try {
-    if (typeof require !== "undefined") {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const sqlite = require("node:sqlite");
-      return sqlite?.DatabaseSync || null;
-    }
-  } catch {
-    // node:sqlite not available or disabled
+  if (database) {
+    return database;
   }
-  return null;
-}
+  // If recent connection attempt failed, do not block or retry immediately
+  if (connectionError && Date.now() - lastConnectAttempt < RETRY_INTERVAL_MS) {
+    return null;
+  }
 
-function getSqliteDatabase() {
-  if (sqliteDb) return sqliteDb;
+  lastConnectAttempt = Date.now();
   try {
-    ensureDirectoryExists();
-    const DatabaseSync = getDatabaseSyncClass();
-    if (!DatabaseSync) {
-      return null;
-    }
-    sqliteDb = new DatabaseSync(SQLITE_FILE);
-    sqliteDb.exec(`
-      CREATE TABLE IF NOT EXISTS inspections (
-        id TEXT PRIMARY KEY,
-        timestamp INTEGER,
-        product_name TEXT,
-        brand TEXT,
-        category TEXT,
-        compliance_status TEXT,
-        compliance_score INTEGER,
-        critical_violations_count INTEGER,
-        image_url TEXT,
-        data_json TEXT,
-        created_at TEXT
-      );
-      CREATE INDEX IF NOT EXISTS idx_inspections_timestamp ON inspections(timestamp DESC);
-      CREATE INDEX IF NOT EXISTS idx_inspections_status ON inspections(compliance_status);
-    `);
+    const db = await getMongoDatabase(process.env.MONGODB_DB_NAME || DEFAULT_DB_NAME);
+    database = db;
 
-    // Seed/sync any JSON records to SQLite table
-    if (fs.existsSync(DB_FILE)) {
-      try {
-        const raw = fs.readFileSync(DB_FILE, "utf-8");
-        const items: InspectionDetail[] = JSON.parse(raw);
-        if (Array.isArray(items)) {
-          const insertStmt = sqliteDb.prepare(`
-            INSERT OR REPLACE INTO inspections (
-              id, timestamp, product_name, brand, category,
-              compliance_status, compliance_score, critical_violations_count,
-              image_url, data_json, created_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-          `);
-          for (const item of items) {
-            insertStmt.run(
-              item.id,
-              item.timestamp,
-              item.extractedData?.productName || "Unknown Product",
-              item.extractedData?.brand || "",
-              item.extractedData?.category || "general",
-              item.compliance?.status || "UNKNOWN",
-              item.compliance?.score || 0,
-              item.compliance?.criticalViolations?.length || 0,
-              item.imageUrl || "",
-              JSON.stringify(item),
-              item.createdAt || new Date().toISOString()
-            );
-          }
-        }
-      } catch {
-        // ignore seed error
-      }
-    }
+    // Create index on id and timestamp
+    const col = database.collection<InspectionDetail>("inspections");
+    await col.createIndex({ id: 1 }, { unique: true }).catch(() => {});
+    await col.createIndex({ timestamp: -1 }).catch(() => {});
+
+    connectionError = null;
+    return database;
   } catch (err: any) {
-    console.info("SQLite database initialization notice:", err?.message || err);
+    connectionError = err;
+    return null;
   }
-  return sqliteDb;
 }
 
-let cachedInspections: InspectionDetail[] | null = null;
-
-export function loadInspections(): InspectionDetail[] {
-  ensureDirectoryExists();
-  const db = getSqliteDatabase();
-  if (cachedInspections) {
-    return cachedInspections;
-  }
-  if (db) {
-    try {
-      const stmt = db.prepare("SELECT data_json FROM inspections ORDER BY timestamp DESC");
-      const rows = stmt.all();
-      if (rows && rows.length > 0) {
-        cachedInspections = rows.map((r: any) => JSON.parse(r.data_json));
-        return cachedInspections || [];
-      }
-    } catch (e) {
-      console.warn("SQLite load fallback to JSON file:", e);
-    }
-  }
-
-  // Fallback to JSON file
-  if (fs.existsSync(DB_FILE)) {
-    try {
-      const raw = fs.readFileSync(DB_FILE, "utf-8");
-      cachedInspections = JSON.parse(raw);
-      return cachedInspections || [];
-    } catch (e) {
-      console.warn("Failed to parse inspections.json, starting fresh", e);
-    }
-  }
-  cachedInspections = [];
-  return cachedInspections;
-}
-
-export function saveInspection(inspection: InspectionDetail): void {
-  const current = loadInspections();
-  // prepend new scan
-  const updated = [inspection, ...current.filter((i) => i.id !== inspection.id)];
-  cachedInspections = updated;
-  ensureDirectoryExists();
-
-  // Save to SQLite
-  const db = getSqliteDatabase();
-  if (db) {
-    try {
-      const stmt = db.prepare(`
-        INSERT OR REPLACE INTO inspections (
-          id, timestamp, product_name, brand, category,
-          compliance_status, compliance_score, critical_violations_count,
-          image_url, data_json, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `);
-      stmt.run(
-        inspection.id,
-        inspection.timestamp,
-        inspection.extractedData.productName || "Unknown Product",
-        inspection.extractedData.brand || "",
-        inspection.extractedData.category || "general",
-        inspection.compliance.status,
-        inspection.compliance.score,
-        inspection.compliance.criticalViolations.length,
-        inspection.imageUrl,
-        JSON.stringify(inspection),
-        inspection.createdAt
-      );
-    } catch (e) {
-      console.warn("SQLite save error:", e);
-    }
-  }
-
-  // Dual persistent write to inspections.json
+export async function loadInspections(): Promise<InspectionDetail[]> {
   try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(updated, null, 2), "utf-8");
+    const db = await getMongoDb();
+    if (db) {
+      const col = db.collection<InspectionDetail>("inspections");
+      const docs = await col
+        .find({}, { projection: { _id: 0 } })
+        .sort({ timestamp: -1 })
+        .toArray();
+      if (docs && docs.length > 0) {
+        sessionInspections = docs;
+        return docs;
+      }
+    }
   } catch (e) {
-    console.error("Failed to write to inspections.json", e);
+    console.warn("[MongoDB] loadInspections fallback:", e);
   }
-
-  // Cloud Firestore Persistence Sync (Non-blocking)
-  syncToFirestoreAsync(inspection).catch(() => {});
+  return sessionInspections;
 }
 
-async function syncToFirestoreAsync(inspection: InspectionDetail): Promise<void> {
+export async function saveInspection(inspection: InspectionDetail): Promise<void> {
+  // Update local session cache immediately
+  sessionInspections = [inspection, ...sessionInspections.filter((i) => i.id !== inspection.id)];
+
   try {
-    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
-    if (!fs.existsSync(configPath)) return;
-    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-    if (!config.projectId) return;
-
-    const databaseId = config.firestoreDatabaseId || "(default)";
-    const url = `https://firestore.googleapis.com/v1/projects/${config.projectId}/databases/${databaseId}/documents/inspections/${inspection.id}?key=${config.apiKey}`;
-    
-    const body = {
-      fields: {
-        id: { stringValue: inspection.id },
-        timestamp: { integerValue: String(inspection.timestamp) },
-        createdAt: { stringValue: inspection.createdAt || new Date().toISOString() },
-        productName: { stringValue: inspection.extractedData?.productName || "Unknown Product" },
-        brand: { stringValue: inspection.extractedData?.brand || "" },
-        category: { stringValue: inspection.extractedData?.category || "general" },
-        complianceStatus: { stringValue: inspection.compliance?.status || "UNKNOWN" },
-        complianceScore: { integerValue: String(Math.round(inspection.compliance?.score || 0)) },
-        criticalViolationsCount: { integerValue: String(inspection.compliance?.criticalViolations?.length || 0) },
-        imageUrl: { stringValue: inspection.imageUrl || "" },
-        dataJson: { stringValue: JSON.stringify(inspection) }
-      }
-    };
-
-    await fetch(url, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-  } catch {
-    // Non-blocking sync
+    const db = await getMongoDb();
+    if (db) {
+      const col = db.collection<InspectionDetail>("inspections");
+      await col.replaceOne({ id: inspection.id }, inspection, { upsert: true });
+    }
+  } catch (err) {
+    console.warn("[MongoDB] saveInspection error:", err);
   }
 }
 
-async function deleteFromFirestoreAsync(id: string): Promise<void> {
+export async function getInspectionById(id: string): Promise<InspectionDetail | null> {
   try {
-    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
-    if (!fs.existsSync(configPath)) return;
-    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-    if (!config.projectId) return;
-    const databaseId = config.firestoreDatabaseId || "(default)";
-    const url = `https://firestore.googleapis.com/v1/projects/${config.projectId}/databases/${databaseId}/documents/inspections/${id}?key=${config.apiKey}`;
-    await fetch(url, { method: "DELETE" });
-  } catch {
-    // Non-blocking
+    const db = await getMongoDb();
+    if (db) {
+      const col = db.collection<InspectionDetail>("inspections");
+      const doc = await col.findOne({ id }, { projection: { _id: 0 } });
+      if (doc) return doc;
+    }
+  } catch (err) {
+    console.warn("[MongoDB] getInspectionById error:", err);
+  }
+  return sessionInspections.find((i) => i.id === id) || null;
+}
+
+export async function deleteInspection(id: string): Promise<boolean> {
+  const initialLength = sessionInspections.length;
+  sessionInspections = sessionInspections.filter((i) => i.id !== id);
+  let deletedFromMongo = false;
+
+  try {
+    const db = await getMongoDb();
+    if (db) {
+      const col = db.collection<InspectionDetail>("inspections");
+      const res = await col.deleteOne({ id });
+      deletedFromMongo = (res.deletedCount || 0) > 0;
+    }
+  } catch (err) {
+    console.warn("[MongoDB] deleteInspection error:", err);
+  }
+
+  return sessionInspections.length < initialLength || deletedFromMongo;
+}
+
+export async function clearAllInspections(): Promise<void> {
+  sessionInspections = [];
+  try {
+    const db = await getMongoDb();
+    if (db) {
+      const col = db.collection<InspectionDetail>("inspections");
+      await col.deleteMany({});
+    }
+  } catch (err) {
+    console.warn("[MongoDB] clearAllInspections error:", err);
   }
 }
 
-export function getInspectionById(id: string): InspectionDetail | null {
-  const db = getSqliteDatabase();
+export async function getDatabaseStatus() {
+  const hasUri = Boolean(process.env.MONGODB_URI);
+  const db = await getMongoDb();
+  const isConnected = Boolean(db);
+  const dbName = process.env.MONGODB_DB_NAME || DEFAULT_DB_NAME;
+  let count = sessionInspections.length;
+
   if (db) {
     try {
-      const stmt = db.prepare("SELECT data_json FROM inspections WHERE id = ?");
-      const row: any = stmt.get(id);
-      if (row?.data_json) {
-        return JSON.parse(row.data_json);
-      }
+      count = await db.collection("inspections").countDocuments();
     } catch {
-      // fallback
+      // count fallback
     }
   }
-  const all = loadInspections();
-  return all.find((i) => i.id === id) || null;
+
+  return {
+    status: isConnected ? "connected" : hasUri ? "connecting" : "ready_for_uri",
+    provider: "MongoDB",
+    databaseName: dbName,
+    collection: "inspections",
+    connected: isConnected,
+    uriConfigured: hasUri,
+    totalInspections: count,
+    error: connectionError ? connectionError.message : null,
+    lastSync: new Date().toISOString(),
+  };
 }
 
-export function deleteInspection(id: string): boolean {
-  const db = getSqliteDatabase();
-  if (db) {
-    try {
-      const stmt = db.prepare("DELETE FROM inspections WHERE id = ?");
-      stmt.run(id);
-    } catch {
-      // ignore
-    }
-  }
-  const all = loadInspections();
-  const filtered = all.filter((i) => i.id !== id);
-  if (filtered.length === all.length) return false;
-  cachedInspections = filtered;
-  ensureDirectoryExists();
-  try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(filtered, null, 2), "utf-8");
-    deleteFromFirestoreAsync(id).catch(() => {});
-    return true;
-  } catch {
-    return false;
-  }
-}

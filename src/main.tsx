@@ -2,8 +2,7 @@ import '@vly-ai/integrations';
 import { Toaster } from "@/components/ui/sonner";
 import { RequireAuth } from "@/components/RequireAuth";
 import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
-import { ConvexAuthProvider } from "@convex-dev/auth/react";
-import { ConvexReactClient } from "convex/react";
+import { ConvexAuthProvider, ConvexReactClient } from "./lib/convex-client";
 import React, { StrictMode, useEffect, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
@@ -145,6 +144,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/scan" element={<Scan />} />
               <Route path="/result/:id" element={<Scan />} />
               <Route path="/scan/:id" element={<Scan />} />
+              <Route path="/report/:id" element={<Scan />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

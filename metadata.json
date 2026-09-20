@@ -1,6 +1,6 @@
 {
   "name": "Remix compliance-scanner",
-  "description": "Legal Metrology compliance scanner with multimodal vision AI and persistent Cloud Firestore database.",
+  "description": "Legal Metrology compliance scanner with multimodal vision AI and MongoDB database integration.",
   "requestFramePermissions": [
     "camera",
     "geolocation"

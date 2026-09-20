@@ -193,8 +193,152 @@ function notifyListeners() {
   listeners.forEach((l) => l());
 }
 
+function inspectionToScanDoc(insp: any): ScanDoc {
+  const status = insp.compliance?.status;
+  const decision: "PASS" | "FAIL" | "REVIEW" =
+    status === "COMPLIANT" ? "PASS" : status === "NON_COMPLIANT" ? "FAIL" : "REVIEW";
+
+  const score = Math.round(Number(insp.compliance?.score) || 0);
+
+  const requirements = (insp.compliance?.rules || []).map((r: any) => ({
+    requirementId: r.ruleId || "RULE",
+    title: r.name || r.ruleId,
+    ruleCited: r.section || r.statute || "Legal Metrology Act, 2009",
+    category: "declaration",
+    status: r.status === "PASS" ? "PASS" : r.status === "FAIL" ? "FAIL" : "REVIEW",
+    severity: r.critical ? "CRITICAL" : "STANDARD",
+    scoreContribution: r.scoreContribution ?? 0,
+    maxScore: r.weight ?? 10,
+    requirement: r.required || "Mandatory legal metrology declaration",
+    detected: r.observed || null,
+    reason: r.penaltyNote || r.defectType || "",
+    evidenceTokens: [],
+    validationMethod: "ai_format_check",
+    weight: r.weight ?? 10,
+  }));
+
+  const brand = insp.extractedData?.brand || undefined;
+  const productName = insp.extractedData?.productName || "Packaged Commodity";
+  const category = insp.extractedData?.category || "packaged_goods";
+  const timestamp = insp.timestamp || (insp.createdAt ? new Date(insp.createdAt).getTime() : Date.now());
+
+  return {
+    _id: insp.id,
+    scanId: insp.id,
+    timestamp,
+    imageHash: insp.id,
+    imageWidth: 800,
+    imageHeight: 600,
+    imageUrl: insp.imageUrl,
+    portalRole: "officer",
+    source: "upload",
+    geolocation: { state: "Central Jurisdiction", district: "Legal Metrology Wing" },
+    analysis: {
+      brand: brand || null,
+      productName: productName || null,
+      category,
+      categoryConfidence: 0.95,
+      packageType: "Pre-packaged Commodity",
+      manufacturer: insp.extractedData?.manufacturerName || insp.extractedData?.manufacturerAddress || null,
+      unitSalePrice: insp.extractedData?.unitSalePrice || null,
+      packer: insp.extractedData?.packer || null,
+      importer: insp.extractedData?.importer || null,
+      manufacturerAddress: insp.extractedData?.manufacturerAddress || null,
+      netQuantity: insp.extractedData?.netQuantity || null,
+      mrp: insp.extractedData?.mrp || null,
+      batchNumber: insp.extractedData?.batchNumber || null,
+      manufactureDate: insp.extractedData?.manufactureDate || null,
+      bestBefore: insp.extractedData?.bestBefore || null,
+      countryOfOrigin: insp.extractedData?.countryOfOrigin || null,
+      fssaiLicense: insp.extractedData?.fssaiLicense || null,
+      licenseInfo: null,
+      consumerCare: insp.extractedData?.consumerCare || null,
+      ingredients: insp.extractedData?.ingredients || null,
+      barcode: {
+        value: insp.extractedData?.barcode || "",
+        symbology: "EAN-13",
+        checksumValid: true,
+      },
+      otherDeclarations: [],
+      fields: insp.extractedData?.fields || [],
+      warnings: [],
+      engine: insp.aiEngineUsed || "Google Gemini Vision API",
+      imageQualityConfidence: 0.9,
+    } as any,
+    database: {
+      product: {
+        source: "internal_catalog",
+        found: true,
+        title: productName,
+        brand: brand || "Unknown Brand",
+        category,
+      },
+    } as any,
+    result: {
+      decision,
+      complianceScore: score,
+      appliedRuleVersion: "2024-amended",
+      kbVersion: KB_VERSION,
+      applicableCount: requirements.length,
+      passCount: insp.compliance?.passCount ?? 0,
+      failCount: insp.compliance?.failCount ?? 0,
+      reviewCount: insp.compliance?.reviewCount ?? 0,
+      scoreableCount: requirements.length,
+      scoreEarned: score,
+      scorePossible: 100,
+      scorePercentage: score,
+      summary: insp.inspectorSummary || "",
+      requirements,
+      outOfScopeRequirements: [],
+      crossCheck: {
+        performed: false,
+        mismatches: [],
+        note: "Barcode cross-check not required for this sample.",
+      },
+      citations: [
+        {
+          act: "Legal Metrology Act, 2009",
+          section: "Section 36(1)",
+          rule: "Legal Metrology (Packaged Commodities) Rules, 2011",
+          text: "Statutory mandatory declarations on pre-packaged commodities",
+        },
+      ],
+    } as any,
+    decision,
+    brand,
+    productName,
+    category,
+    createdAt: timestamp,
+    officerId: DEFAULT_USER._id,
+  };
+}
+
 let inMemoryScans: ScanDoc[] = loadStoredScans();
 let inMemoryUser: UserDoc | null = loadStoredUser();
+
+export async function syncBackendInspections(): Promise<void> {
+  try {
+    const res = await fetch("/api/inspections");
+    if (!res.ok) return;
+    const data = await res.json();
+    const items = Array.isArray(data) ? data : data.inspections;
+    if (Array.isArray(items) && items.length > 0) {
+      const converted = items.map(inspectionToScanDoc);
+      const existingIds = new Set(converted.map((c) => c._id));
+      const remainingExisting = inMemoryScans.filter(
+        (s) => !existingIds.has(s._id) && !existingIds.has(s.scanId)
+      );
+      inMemoryScans = [...converted, ...remainingExisting];
+      notifyListeners();
+    }
+  } catch (err) {
+    console.warn("Could not sync inspections from database:", err);
+  }
+}
+
+if (typeof window !== "undefined") {
+  syncBackendInspections();
+}
 
 function saveScans(scans: ScanDoc[]) {
   inMemoryScans = scans;
@@ -392,7 +536,7 @@ export function useQuery(queryRef: any, args?: any): any {
   if (fnName.includes("getScanByScanId")) {
     const sId = args?.scanId;
     if (!sId) return undefined;
-    return inMemoryScans.find((s) => s.scanId === sId) ?? null;
+    return inMemoryScans.find((s) => s.scanId === sId || s._id === sId) ?? null;
   }
 
   // 4. listScans
@@ -486,9 +630,10 @@ export function useMutation(mutationRef: any) {
     const fnName = getRefName(mutationRef);
 
     if (fnName.includes("seedExampleCases")) {
+      await syncBackendInspections();
       const scans = loadStoredScans();
       saveScans(scans);
-      return { seeded: true, count: scans.length };
+      return { seeded: true, count: inMemoryScans.length };
     }
 
     if (fnName.includes("saveReport")) {

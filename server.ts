@@ -11,7 +11,14 @@ import {
   VisionScanOptions,
 } from "./backend/ai_service";
 import { evaluateCompliance } from "./backend/compliance";
-import { saveInspection, getInspectionById, loadInspections, deleteInspection } from "./backend/database";
+import {
+  saveInspection,
+  getInspectionById,
+  loadInspections,
+  deleteInspection,
+  clearAllInspections,
+  getDatabaseStatus,
+} from "./backend/database";
 import { generateHtmlReport } from "./backend/report";
 import { InspectionDetail } from "./src/types/inspection";
 
@@ -119,37 +126,28 @@ async function startServer() {
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
       ollamaConfigured: Boolean(process.env.OLLAMA_BASE_URL),
       engines: getEngineConfig(),
-      database: "Cloud Firestore (wired-aurora-cggh3) + SQLite",
+      database: "MongoDB (Collection: inspections)",
       rulesCount: 15,
       version: "3.5.0",
     });
   });
 
-  app.get("/api/database/status", (_req, res) => {
-    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
-    const hasFirebase = fs.existsSync(configPath);
-    let firebaseProjectId = null;
-    let firestoreDatabaseId = null;
-    if (hasFirebase) {
-      try {
-        const cfg = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-        firebaseProjectId = cfg.projectId;
-        firestoreDatabaseId = cfg.firestoreDatabaseId;
-      } catch {
-        // ignore
-      }
+  app.get("/api/database/status", async (_req, res) => {
+    try {
+      const status = await getDatabaseStatus();
+      res.json(status);
+    } catch (err: any) {
+      res.status(500).json({ error: "DATABASE_STATUS_ERROR", message: err.message });
     }
-    const items = loadInspections();
-    res.json({
-      status: "connected",
-      provider: "Cloud Firestore + SQLite Dual Engine",
-      cloudDatabase: "Firestore",
-      firebaseProjectId: firebaseProjectId || "wired-aurora-cggh3",
-      firestoreDatabaseId: firestoreDatabaseId || "(default)",
-      localPersistence: "SQLite (data/inspections.db)",
-      totalInspections: items.length,
-      lastSync: new Date().toISOString(),
-    });
+  });
+
+  app.post("/api/database/clear", async (_req, res) => {
+    try {
+      await clearAllInspections();
+      res.json({ status: "ok", message: "Database records cleared successfully" });
+    } catch (err: any) {
+      res.status(500).json({ error: "CLEAR_ERROR", message: err.message });
+    }
   });
 
   app.get(["/api/scan/engines", "/scan/engines"], (_req, res) => {
@@ -264,7 +262,7 @@ async function startServer() {
         aiEngineUsed: visionResult.engineUsed,
       };
 
-      saveInspection(inspectionDetail);
+      await saveInspection(inspectionDetail);
 
       // Step 7: Response
       return res.status(201).json(inspectionDetail);
@@ -283,9 +281,9 @@ async function startServer() {
   // ---------------------------------------------------------------------------
   // INSPECTION RETRIEVAL & LISTING
   // ---------------------------------------------------------------------------
-  app.get("/api/inspections", (_req, res) => {
+  app.get("/api/inspections", async (_req, res) => {
     try {
-      const items = loadInspections();
+      const items = await loadInspections();
       res.json({
         total: items.length,
         inspections: items,
@@ -295,9 +293,9 @@ async function startServer() {
     }
   });
 
-  app.get("/api/inspections/:id", (req, res) => {
+  app.get("/api/inspections/:id", async (req, res) => {
     try {
-      const item = getInspectionById(req.params.id);
+      const item = await getInspectionById(req.params.id);
       if (!item) {
         return res.status(404).json({ error: "NOT_FOUND", message: "Inspection record not found" });
       }
@@ -307,9 +305,9 @@ async function startServer() {
     }
   });
 
-  app.delete("/api/inspections/:id", (req, res) => {
+  app.delete("/api/inspections/:id", async (req, res) => {
     try {
-      const deleted = deleteInspection(req.params.id);
+      const deleted = await deleteInspection(req.params.id);
       if (!deleted) {
         return res.status(404).json({ error: "NOT_FOUND" });
       }
@@ -322,9 +320,9 @@ async function startServer() {
   // ---------------------------------------------------------------------------
   // OFFICIAL REPORT & PDF GENERATION
   // ---------------------------------------------------------------------------
-  app.get("/api/inspections/:id/pdf", (req, res) => {
+  app.get("/api/inspections/:id/pdf", async (req, res) => {
     try {
-      const item = getInspectionById(req.params.id);
+      const item = await getInspectionById(req.params.id);
       if (!item) {
         return res.status(404).send("Inspection not found");
       }

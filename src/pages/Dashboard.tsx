@@ -2,8 +2,8 @@
 // Analytics overview · new inspection (with calibration + offline queue) ·
 // repository of scans with full reports and notice generation.
 
-import { useMemo, useState } from "react";
-import { useAction, useMutation, useQuery } from "convex/react";
+import { useMemo, useState, useEffect } from "react";
+import { useAction, useMutation, useQuery } from "@/lib/convex-client";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
@@ -43,6 +43,7 @@ import {
   WifiOff,
   Sparkles,
   Database,
+  Trash2,
 } from "lucide-react";
 import { GroundingPanel } from "@/components/grounding-panel";
 import {
@@ -646,6 +647,20 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const seed = useMutation(api.scans.seedExampleCases);
   const [tab, setTab] = useState("overview");
+  const [dbStatus, setDbStatus] = useState<{
+    provider?: string;
+    databaseName?: string;
+    connected?: boolean;
+    uriConfigured?: boolean;
+    totalInspections?: number;
+  } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/database/status")
+      .then((r) => r.json())
+      .then((d) => setDbStatus(d))
+      .catch(() => {});
+  }, []);
 
   const onSeed = async () => {
     try {
@@ -658,6 +673,17 @@ export default function Dashboard() {
       setTab("repository");
     } catch {
       toast.error("Seeding failed.");
+    }
+  };
+
+  const onClear = async () => {
+    try {
+      localStorage.removeItem("metrosan_scans_v1");
+      await fetch("/api/database/clear", { method: "POST" }).catch(() => {});
+      toast.success("Repository cleared.");
+      window.location.reload();
+    } catch {
+      toast.error("Could not clear repository.");
     }
   };
 
@@ -712,22 +738,41 @@ export default function Dashboard() {
               Enforcement Dashboard
             </h1>
             <Badge
-              id="dashboard-database-badge"
+              id="dashboard-mongodb-badge"
               variant="outline"
-              className="h-6 gap-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-[11px] font-medium"
+              className={`h-6 gap-1.5 text-[11px] font-medium ${
+                dbStatus?.connected
+                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
+                  : dbStatus?.uriConfigured
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+                  : "bg-primary/10 text-primary border-primary/20"
+              }`}
             >
               <Database className="h-3 w-3" />
-              Cloud Firestore Active
+              {dbStatus?.connected
+                ? `MongoDB: ${dbStatus.databaseName || "Connected"}`
+                : "MongoDB Database"}
             </Badge>
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
             Vision-based Legal Metrology inspections — evidence-anchored PASS / FAIL /
-            REVIEW verdicts with rule citations & persistent cloud storage.
+            REVIEW verdicts with statutory rule citations.
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={() => void onSeed()}>
-          <Gavel className="mr-2 h-4 w-4" /> Load specimen cases
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => void onSeed()}>
+            <Gavel className="mr-2 h-4 w-4" /> Load specimen cases
+          </Button>
+          <Button
+            id="dashboard-clear-btn"
+            variant="ghost"
+            size="sm"
+            onClick={() => void onClear()}
+            className="text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+          >
+            <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear repository
+          </Button>
+        </div>
       </header>
 
       <Tabs value={tab} onValueChange={setTab} className="space-y-5">

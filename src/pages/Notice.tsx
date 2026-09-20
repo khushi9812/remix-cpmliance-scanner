@@ -3,7 +3,7 @@
 // rule engine's mandatory FAIL results with their exact rule citations.
 
 import { useState } from "react";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation, useQuery } from "@/lib/convex-client";
 import { useParams, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
