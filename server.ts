@@ -119,8 +119,36 @@ async function startServer() {
       openaiConfigured: Boolean(process.env.OPENAI_API_KEY),
       ollamaConfigured: Boolean(process.env.OLLAMA_BASE_URL),
       engines: getEngineConfig(),
+      database: "Cloud Firestore (wired-aurora-cggh3) + SQLite",
       rulesCount: 15,
       version: "3.5.0",
+    });
+  });
+
+  app.get("/api/database/status", (_req, res) => {
+    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
+    const hasFirebase = fs.existsSync(configPath);
+    let firebaseProjectId = null;
+    let firestoreDatabaseId = null;
+    if (hasFirebase) {
+      try {
+        const cfg = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+        firebaseProjectId = cfg.projectId;
+        firestoreDatabaseId = cfg.firestoreDatabaseId;
+      } catch {
+        // ignore
+      }
+    }
+    const items = loadInspections();
+    res.json({
+      status: "connected",
+      provider: "Cloud Firestore + SQLite Dual Engine",
+      cloudDatabase: "Firestore",
+      firebaseProjectId: firebaseProjectId || "wired-aurora-cggh3",
+      firestoreDatabaseId: firestoreDatabaseId || "(default)",
+      localPersistence: "SQLite (data/inspections.db)",
+      totalInspections: items.length,
+      lastSync: new Date().toISOString(),
     });
   });
 

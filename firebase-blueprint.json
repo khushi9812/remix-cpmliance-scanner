@@ -1,0 +1,114 @@
+{
+  "entities": {
+    "inspection": {
+      "title": "Inspection",
+      "description": "A legal metrology inspection record for pre-packaged goods.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique inspection identifier"
+        },
+        "timestamp": {
+          "type": "number",
+          "description": "Epoch millisecond timestamp of the inspection"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 creation datetime string"
+        },
+        "productName": {
+          "type": "string",
+          "description": "Name of the inspected product"
+        },
+        "brand": {
+          "type": "string",
+          "description": "Brand or manufacturer declaration"
+        },
+        "category": {
+          "type": "string",
+          "description": "Product category"
+        },
+        "complianceStatus": {
+          "type": "string",
+          "enum": ["COMPLIANT", "PARTIAL_COMPLIANT", "NON_COMPLIANT"],
+          "description": "Overall Legal Metrology compliance state"
+        },
+        "complianceScore": {
+          "type": "number",
+          "description": "Calculated compliance score from 0 to 100"
+        },
+        "criticalViolationsCount": {
+          "type": "number",
+          "description": "Number of critical non-compliance violations"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Uploaded or reference product label image URL"
+        },
+        "inspectorSummary": {
+          "type": "string",
+          "description": "Executive summary from the inspection analysis"
+        },
+        "aiEngineUsed": {
+          "type": "string",
+          "description": "AI engine used for evaluation"
+        },
+        "dataJson": {
+          "type": "string",
+          "description": "Serialized JSON snapshot of all extracted fields and compliance results"
+        }
+      },
+      "required": ["id", "timestamp", "createdAt", "complianceStatus", "complianceScore"]
+    },
+    "notice": {
+      "title": "Notice",
+      "description": "A statutory legal notice under the Legal Metrology Act 2009 for non-compliant goods.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique legal notice ID"
+        },
+        "inspectionId": {
+          "type": "string",
+          "description": "ID of the associated inspection report"
+        },
+        "noticeNumber": {
+          "type": "string",
+          "description": "Official reference number for the legal notice"
+        },
+        "issuedTo": {
+          "type": "string",
+          "description": "Recipient company or brand entity"
+        },
+        "statuteSection": {
+          "type": "string",
+          "description": "Statutory section invoked"
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Issue datetime string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["DRAFT", "ISSUED", "COMPOUNDED", "ESCALATED"],
+          "description": "Current status of the notice"
+        }
+      },
+      "required": ["id", "inspectionId", "noticeNumber", "issuedAt", "status"]
+    }
+  },
+  "firestore": {
+    "/inspections/{inspectionId}": {
+      "schema": "inspection",
+      "description": "Collection of all legal metrology inspections."
+    },
+    "/notices/{noticeId}": {
+      "schema": "notice",
+      "description": "Collection of statutory notices issued from inspection violations."
+    }
+  }
+}

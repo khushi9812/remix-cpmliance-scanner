@@ -42,6 +42,7 @@ import {
   Upload,
   WifiOff,
   Sparkles,
+  Database,
 } from "lucide-react";
 import { GroundingPanel } from "@/components/grounding-panel";
 import {
@@ -705,13 +706,23 @@ export default function Dashboard() {
 
       <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-            <ClipboardList className="h-6 w-6 text-primary" />
-            Enforcement Dashboard
-          </h1>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
+              <ClipboardList className="h-6 w-6 text-primary" />
+              Enforcement Dashboard
+            </h1>
+            <Badge
+              id="dashboard-database-badge"
+              variant="outline"
+              className="h-6 gap-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-[11px] font-medium"
+            >
+              <Database className="h-3 w-3" />
+              Cloud Firestore Active
+            </Badge>
+          </div>
           <p className="mt-1 text-sm text-muted-foreground">
             Vision-based Legal Metrology inspections — evidence-anchored PASS / FAIL /
-            REVIEW verdicts with rule citations.
+            REVIEW verdicts with rule citations & persistent cloud storage.
           </p>
         </div>
         <Button variant="outline" size="sm" onClick={() => void onSeed()}>

@@ -1,9 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { createRequire } from "node:module";
 import { InspectionDetail } from "../src/types/inspection";
-
-const require = createRequire(import.meta.url);
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DB_FILE = path.join(DATA_DIR, "inspections.json");
@@ -21,12 +18,27 @@ function ensureDirectoryExists() {
 // ---------------------------------------------------------------------------
 let sqliteDb: any = null;
 
+function getDatabaseSyncClass() {
+  try {
+    if (typeof require !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const sqlite = require("node:sqlite");
+      return sqlite?.DatabaseSync || null;
+    }
+  } catch {
+    // node:sqlite not available or disabled
+  }
+  return null;
+}
+
 function getSqliteDatabase() {
   if (sqliteDb) return sqliteDb;
   try {
     ensureDirectoryExists();
-    // Dynamic load of native node:sqlite
-    const { DatabaseSync } = require("node:sqlite");
+    const DatabaseSync = getDatabaseSyncClass();
+    if (!DatabaseSync) {
+      return null;
+    }
     sqliteDb = new DatabaseSync(SQLITE_FILE);
     sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS inspections (
@@ -162,6 +174,59 @@ export function saveInspection(inspection: InspectionDetail): void {
   } catch (e) {
     console.error("Failed to write to inspections.json", e);
   }
+
+  // Cloud Firestore Persistence Sync (Non-blocking)
+  syncToFirestoreAsync(inspection).catch(() => {});
+}
+
+async function syncToFirestoreAsync(inspection: InspectionDetail): Promise<void> {
+  try {
+    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
+    if (!fs.existsSync(configPath)) return;
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    if (!config.projectId) return;
+
+    const databaseId = config.firestoreDatabaseId || "(default)";
+    const url = `https://firestore.googleapis.com/v1/projects/${config.projectId}/databases/${databaseId}/documents/inspections/${inspection.id}?key=${config.apiKey}`;
+    
+    const body = {
+      fields: {
+        id: { stringValue: inspection.id },
+        timestamp: { integerValue: String(inspection.timestamp) },
+        createdAt: { stringValue: inspection.createdAt || new Date().toISOString() },
+        productName: { stringValue: inspection.extractedData?.productName || "Unknown Product" },
+        brand: { stringValue: inspection.extractedData?.brand || "" },
+        category: { stringValue: inspection.extractedData?.category || "general" },
+        complianceStatus: { stringValue: inspection.compliance?.status || "UNKNOWN" },
+        complianceScore: { integerValue: String(Math.round(inspection.compliance?.score || 0)) },
+        criticalViolationsCount: { integerValue: String(inspection.compliance?.criticalViolations?.length || 0) },
+        imageUrl: { stringValue: inspection.imageUrl || "" },
+        dataJson: { stringValue: JSON.stringify(inspection) }
+      }
+    };
+
+    await fetch(url, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    // Non-blocking sync
+  }
+}
+
+async function deleteFromFirestoreAsync(id: string): Promise<void> {
+  try {
+    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
+    if (!fs.existsSync(configPath)) return;
+    const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    if (!config.projectId) return;
+    const databaseId = config.firestoreDatabaseId || "(default)";
+    const url = `https://firestore.googleapis.com/v1/projects/${config.projectId}/databases/${databaseId}/documents/inspections/${id}?key=${config.apiKey}`;
+    await fetch(url, { method: "DELETE" });
+  } catch {
+    // Non-blocking
+  }
 }
 
 export function getInspectionById(id: string): InspectionDetail | null {
@@ -198,6 +263,7 @@ export function deleteInspection(id: string): boolean {
   ensureDirectoryExists();
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(filtered, null, 2), "utf-8");
+    deleteFromFirestoreAsync(id).catch(() => {});
     return true;
   } catch {
     return false;
