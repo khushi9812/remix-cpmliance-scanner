@@ -43,6 +43,7 @@ import {
   LEGAL_METROLOGY_DECLARATIONS,
 } from "@/types/inspection";
 import { LABEL_SAMPLES } from "@/lib/label-samples";
+import { ConnectivityStatus } from "@/components/ConnectivityStatus";
 import { makeSyntheticLabel } from "@/lib/synthetic-label";
 import { CameraCaptureModal } from "@/components/CameraCaptureModal";
 
@@ -128,6 +129,21 @@ export default function Scan() {
       }
       if (customOllamaUrl.trim()) {
         formData.append("ollamaBaseUrl", customOllamaUrl.trim());
+      }
+
+      // Geolocation capture if available
+      try {
+        if ("geolocation" in navigator) {
+          const pos = await new Promise<GeolocationPosition>((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 3000, maximumAge: 60000 });
+          }).catch(() => null);
+          if (pos?.coords) {
+            formData.append("latitude", String(pos.coords.latitude));
+            formData.append("longitude", String(pos.coords.longitude));
+          }
+        }
+      } catch {
+        // Geolocation optional, proceed without blocking
       }
 
       const res = await fetch("/api/scan", {
@@ -226,15 +242,16 @@ export default function Scan() {
             <div className="flex items-center gap-2">
               <Scale className="h-5 w-5 text-blue-600" />
               <span className="text-sm font-bold tracking-tight text-slate-900">
-                MetroScan Vision
+                NiriKsha Vision
               </span>
               <Badge variant="outline" className="hidden border-blue-200 bg-blue-50 text-[10px] font-semibold text-blue-700 sm:inline-flex">
-                AI Vision + 15 Legal Rules
+                Legal Metrology Rules, 2011
               </Badge>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
+            <ConnectivityStatus compact />
             <Button
               id="header-camera-btn"
               variant="outline"

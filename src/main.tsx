@@ -12,6 +12,9 @@ import "./index.css";
 const Landing = lazy(() => import("./pages/Landing.tsx"));
 const AuthPage = lazy(() => import("./pages/Auth.tsx"));
 const Dashboard = lazy(() => import("./pages/Dashboard.tsx"));
+const NirikshaDashboard = lazy(() => import("./pages/NirikshaDashboard.tsx"));
+const NirikshaProfile = lazy(() => import("./pages/NirikshaProfile.tsx"));
+const DraftsArchive = lazy(() => import("./pages/DraftsArchive.tsx"));
 const Scan = lazy(() => import("./pages/Scan.tsx"));
 const Notice = lazy(() => import("./pages/Notice.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -120,18 +123,20 @@ createRoot(document.getElementById("root")!).render(
           <RouteSyncer />
           <Suspense fallback={<RouteLoading />}>
             <Routes>
-              <Route path="/" element={<Landing />} />
+              <Route path="/" element={<NirikshaDashboard />} />
+              <Route path="/dashboard" element={<NirikshaDashboard />} />
+              <Route path="/profile" element={<NirikshaProfile />} />
+              <Route path="/drafts" element={<DraftsArchive />} />
+              <Route path="/reports" element={<DraftsArchive />} />
+              <Route path="/enforcement" element={<Dashboard />} />
+              <Route path="/landing" element={<Landing />} />
               <Route
                 path="/auth"
                 element={<AuthPage redirectAfterAuth="/dashboard" />}
               />
               <Route
-                path="/dashboard"
-                element={
-                  <RequireAuth>
-                    <Dashboard />
-                  </RequireAuth>
-                }
+                path="/login"
+                element={<AuthPage redirectAfterAuth="/dashboard" />}
               />
               <Route
                 path="/notice/:scanId"

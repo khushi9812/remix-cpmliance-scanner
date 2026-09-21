@@ -71,6 +71,17 @@ export interface ComplianceSummary {
   rules: RuleEvaluationResult[];
 }
 
+export interface InspectionLocation {
+  latitude: number;
+  longitude: number;
+  marketName?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  district?: string;
+  pincode?: string;
+}
+
 export interface InspectionDetail {
   id: string;
   timestamp: number;
@@ -84,6 +95,7 @@ export interface InspectionDetail {
   compliance: ComplianceSummary;
   inspectorSummary: string;
   aiEngineUsed: string;
+  location?: InspectionLocation;
 }
 
 export interface LegalMetrologyDeclarationRule {

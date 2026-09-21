@@ -709,6 +709,15 @@ export default function Dashboard() {
         </Button>
         <div className="flex items-center gap-2">
           <Button
+            id="dashboard-to-niriksha-btn"
+            variant="outline"
+            size="sm"
+            onClick={() => navigate("/dashboard")}
+            className="h-8 gap-1 text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 hover:text-white"
+          >
+            NiriKsha Portal
+          </Button>
+          <Button
             id="dashboard-to-scan-btn"
             variant="ghost"
             size="sm"

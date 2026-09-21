@@ -1,6 +1,6 @@
 {
-  "name": "Remix compliance-scanner",
-  "description": "Legal Metrology compliance scanner with multimodal vision AI and MongoDB database integration.",
+  "name": "NiriKsha — Legal Metrology Compliance Scanner",
+  "description": "NiriKsha Legal Metrology compliance inspection platform with Fourth Schedule font calibration and statutory enforcement workflow.",
   "requestFramePermissions": [
     "camera",
     "geolocation"

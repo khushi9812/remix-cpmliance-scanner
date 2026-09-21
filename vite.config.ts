@@ -8,11 +8,14 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react(), vlyPlugin(), tailwindcss()],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "convex/react": path.resolve(__dirname, "./src/lib/convex-client.tsx"),
-      "@convex-dev/auth/react": path.resolve(__dirname, "./src/lib/convex-client.tsx"),
-    },
+    alias: [
+      { find: /^@\/convex\/_generated\/api$/, replacement: path.resolve(__dirname, "./src/lib/convex-client.tsx") },
+      { find: /^@\/convex\/_generated\/server$/, replacement: path.resolve(__dirname, "./src/lib/convex-client.tsx") },
+      { find: /^@\/convex\/_generated\/dataModel$/, replacement: path.resolve(__dirname, "./src/lib/convex-client.tsx") },
+      { find: "convex/react", replacement: path.resolve(__dirname, "./src/lib/convex-client.tsx") },
+      { find: "@convex-dev/auth/react", replacement: path.resolve(__dirname, "./src/lib/convex-client.tsx") },
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+    ],
     // Force a single copy of React across all packages (including vlyPlugin).
     // Without this, @vly-ai/integrations can resolve its own React copy, which
     // triggers "Invalid hook call" errors at runtime.

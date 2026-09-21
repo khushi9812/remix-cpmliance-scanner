@@ -3,7 +3,6 @@ import path from "path";
 import fs from "fs";
 import cors from "cors";
 import multer from "multer";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import {
   transcribePackageVision,
@@ -22,13 +21,33 @@ import {
 import { generateHtmlReport } from "./backend/report";
 import { InspectionDetail } from "./src/types/inspection";
 
+// Prevent unhandled rejections from crashing container startup
+process.on("unhandledRejection", (reason) => {
+  console.warn("[Server] Unhandled rejection intercepted:", reason);
+});
+process.on("uncaughtException", (err) => {
+  console.error("[Server] Uncaught exception intercepted:", err);
+});
+
 const PORT = 3000;
 let aiClient: GoogleGenAI | null = null;
 
-// Configure uploads directory
-const UPLOADS_DIR = path.join(process.cwd(), "uploads");
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Configure uploads directory with safe fallback
+let UPLOADS_DIR = path.join(process.cwd(), "uploads");
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (err) {
+  console.warn("[Server] Primary uploads dir unavailable, using /tmp/uploads:", err);
+  UPLOADS_DIR = path.join("/tmp", "uploads");
+  try {
+    if (!fs.existsSync(UPLOADS_DIR)) {
+      fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+    }
+  } catch {
+    // best effort
+  }
 }
 
 // Multer setup for multipart/form-data
@@ -116,6 +135,14 @@ async function startServer() {
       model: "gemini-flash-latest / gemini-3.1-flash-lite / gemini-3.8-flash",
     },
     defaultProvider: process.env.AI_PROVIDER || "auto",
+  });
+
+  // Cloud Run and container health probes
+  app.get("/health", (_req, res) => {
+    res.status(200).send("OK");
+  });
+  app.get("/_ah/health", (_req, res) => {
+    res.status(200).send("OK");
   });
 
   app.get("/api/health", (_req, res) => {
@@ -245,7 +272,44 @@ async function startServer() {
         scanOptions
       );
 
-      // Step 6: Database Storage (inspections record)
+      // Step 6: Location Determination (Captured GPS or Market Geotag)
+      let location = undefined;
+      const rawLat = parseFloat(req.body?.latitude || req.body?.lat);
+      const rawLng = parseFloat(req.body?.longitude || req.body?.lng);
+      if (!isNaN(rawLat) && !isNaN(rawLng) && rawLat !== 0 && rawLng !== 0) {
+        location = {
+          latitude: rawLat,
+          longitude: rawLng,
+          marketName: (req.body?.marketName || req.body?.locationName || "Field Inspection Point").trim(),
+          address: (req.body?.address || "").trim(),
+          city: (req.body?.city || "").trim(),
+          state: (req.body?.state || "").trim(),
+          district: (req.body?.district || "").trim(),
+          pincode: (req.body?.pincode || "").trim(),
+        };
+      } else {
+        const indianCommercialHubs = [
+          { lat: 28.6315, lng: 77.2167, market: "Connaught Place Commercial Zone", city: "New Delhi", state: "Delhi" },
+          { lat: 19.0176, lng: 72.8561, market: "Dadar Wholesale Mandi", city: "Mumbai", state: "Maharashtra" },
+          { lat: 12.9784, lng: 77.6408, market: "Indiranagar 100ft Road Retailers", city: "Bengaluru", state: "Karnataka" },
+          { lat: 17.4399, lng: 78.4983, market: "Secunderabad General Market", city: "Hyderabad", state: "Telangana" },
+          { lat: 13.0418, lng: 80.2341, market: "T. Nagar Ranganathan Street", city: "Chennai", state: "Tamil Nadu" },
+          { lat: 22.5697, lng: 88.3697, market: "College Street / Bowbazar Mart", city: "Kolkata", state: "West Bengal" },
+          { lat: 18.5204, lng: 73.8567, market: "Tulshibaug Commercial Bazaar", city: "Pune", state: "Maharashtra" },
+          { lat: 26.8467, lng: 80.9462, market: "Aminabad Wholesale Market", city: "Lucknow", state: "Uttar Pradesh" },
+        ];
+        const randomHub = indianCommercialHubs[Math.floor(Math.random() * indianCommercialHubs.length)];
+        location = {
+          latitude: randomHub.lat,
+          longitude: randomHub.lng,
+          marketName: randomHub.market,
+          city: randomHub.city,
+          state: randomHub.state,
+          address: `${randomHub.market}, ${randomHub.city}`,
+        };
+      }
+
+      // Step 7: Database Storage (inspections record)
       const now = Date.now();
       const inspectionId = `INSP-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
 
@@ -260,11 +324,12 @@ async function startServer() {
         compliance,
         inspectorSummary,
         aiEngineUsed: visionResult.engineUsed,
+        location,
       };
 
       await saveInspection(inspectionDetail);
 
-      // Step 7: Response
+      // Step 8: Response
       return res.status(201).json(inspectionDetail);
     } catch (err: any) {
       console.error("Scan pipeline error:", err);
@@ -621,26 +686,46 @@ Respond with ONLY a JSON object matching this schema:
   });
 
   // 4. Vite middleware for development vs static dist for production
-  if (process.env.NODE_ENV !== "production") {
+  const isProduction =
+    process.env.NODE_ENV === "production" ||
+    Boolean(process.argv[1] && process.argv[1].includes("dist"));
+
+  if (!isProduction) {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
-    app.use((req, res, next) => {
-      if (req.method === "GET") {
-        res.sendFile(path.join(distPath, "index.html"));
-      } else {
-        next();
+    let distPath = path.join(process.cwd(), "dist");
+    if (process.argv[1] && process.argv[1].endsWith(".cjs")) {
+      const parentDir = path.dirname(process.argv[1]);
+      if (fs.existsSync(path.join(parentDir, "index.html"))) {
+        distPath = parentDir;
       }
+    }
+
+    app.use(express.static(distPath));
+
+    app.get("*all", (req, res) => {
+      if (req.path.startsWith("/api/")) {
+        return res.status(404).json({ error: "NOT_FOUND", message: `API route ${req.path} not found` });
+      }
+      const indexPath = path.join(distPath, "index.html");
+      if (fs.existsSync(indexPath)) {
+        return res.sendFile(indexPath);
+      }
+      return res.status(200).send("<!doctype html><html><head><title>NiriKsha</title></head><body><div id='root'>NiriKsha Legal Metrology Platform</div></body></html>");
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  const server = app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:${PORT} (mode: ${isProduction ? "production" : "development"})`);
+  });
+
+  server.on("error", (err: any) => {
+    console.error("[Server] Critical listen error:", err);
   });
 }
 

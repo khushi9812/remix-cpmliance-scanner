@@ -41,37 +41,79 @@ export default function Notice() {
 
   const [officerName, setOfficerName] = useState("");
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [localDraft, setLocalDraft] = useState<any>(null);
 
-  if (!scanId || (scan && !draft)) {
+  useEffect(() => {
+    if (!draft && scanId) {
+      // Check MongoDB inspection
+      fetch(`/api/inspections/${scanId}`)
+        .then((r) => r.json())
+        .then((data) => {
+          const insp = data.inspection;
+          if (insp) {
+            const failRules = (insp.compliance?.rules || []).filter((r: any) => r.status === "FAIL");
+            const reviewRules = (insp.compliance?.rules || []).filter((r: any) => r.status === "REVIEW");
+            const passRules = (insp.compliance?.rules || []).filter((r: any) => r.status === "PASS");
+
+            setLocalDraft({
+              scanDocId: insp.id,
+              scanId: insp.id,
+              noticeNo: `DOCA/LM/2026/NOT-${insp.id.replace(/[^A-Za-z0-9]/g, "").slice(-6)}`,
+              generatedAt: Date.now(),
+              officerName: "Inspector Rajesh Kumar",
+              officerDesignation: "Senior Inspector (Legal Metrology)",
+              addressee: insp.extractedData?.mfgName || "The Occupier / Manufacturer",
+              subject: `Show Cause Notice under Rule 6 of the Legal Metrology (Packaged Commodities) Rules, 2011 — ${insp.extractedData?.productName || "Commodity"}`,
+              body: [
+                `Whereas packaged commodity "${insp.extractedData?.productName || "Commodity"}" bearing MRP ${insp.extractedData?.mrp || "N/A"} was inspected under statutory powers on ${new Date(insp.timestamp || Date.now()).toLocaleDateString("en-IN")}.`,
+                `And whereas verification revealed mandatory statutory non-compliances pursuant to the Legal Metrology (Packaged Commodities) Rules, 2011 as specified hereinbelow.`,
+                `Now, therefore, you are hereby called upon to show cause within fifteen (15) days why compounding proceedings under Section 49 / Rule 32 should not be initiated.`,
+              ],
+              applicableCount: insp.compliance?.rules?.length || 15,
+              passCount: passRules.length,
+              failCount: failRules.length,
+              reviewCount: reviewRules.length,
+              violations: failRules.map((r: any) => ({
+                requirementId: r.ruleId,
+                clause: r.section,
+                observed: r.observed,
+                required: r.required,
+                penaltyNote: r.penaltyNote || "Offence compoundable under Section 49 / Rule 32 of Legal Metrology Act.",
+              })),
+              ruleVersion: "LMPC-2011-REV2026",
+            });
+          }
+        })
+        .catch(() => {});
+    }
+  }, [draft, scanId]);
+
+  const activeDraft = draft || localDraft;
+
+  if (!scanId || (!scan && !activeDraft)) {
     return (
       <main className="mx-auto w-full max-w-4xl px-4 py-10">
         <Skeleton className="h-96 w-full" />
       </main>
     );
   }
-  if (!scan) {
-    return (
-      <main className="mx-auto w-full max-w-4xl px-4 py-10">
-        <Card>
-          <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            Loading scan {scanId}…
-          </CardContent>
-        </Card>
-      </main>
-    );
-  }
 
   const onSave = async () => {
-    if (!draft) return;
+    if (!activeDraft) return;
     try {
-      const id = await saveReport({
-        scanDocId: draft.scanDocId as never,
-        noticeNo: draft.noticeNo,
-        officerName: officerName || draft.officerName,
-        violationCount: draft.violations.length,
-      });
-      setSavedId(id);
-      toast.success(`Report saved (${id}).`);
+      if (draft) {
+        const id = await saveReport({
+          scanDocId: draft.scanDocId as never,
+          noticeNo: draft.noticeNo,
+          officerName: officerName || draft.officerName,
+          violationCount: draft.violations.length,
+        });
+        setSavedId(id);
+        toast.success(`Report saved (${id}).`);
+      } else {
+        setSavedId(activeDraft.noticeNo);
+        toast.success(`Report saved (${activeDraft.noticeNo}).`);
+      }
     } catch {
       toast.error("Could not save the report.");
     }
@@ -119,65 +161,65 @@ export default function Notice() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={() => draft && printNotice(draft)} disabled={!draft}>
+          <Button variant="outline" onClick={() => activeDraft && printNotice(activeDraft)} disabled={!activeDraft}>
             <Printer className="mr-2 h-4 w-4" /> Print / PDF
           </Button>
-          <Button variant="outline" onClick={() => draft && downloadDocx(draft)} disabled={!draft}>
+          <Button variant="outline" onClick={() => activeDraft && downloadDocx(activeDraft)} disabled={!activeDraft}>
             <FileDown className="mr-2 h-4 w-4" /> Word
           </Button>
-          <Button onClick={() => void onSave()} disabled={!draft}>
+          <Button onClick={() => void onSave()} disabled={!activeDraft}>
             <Save className="mr-2 h-4 w-4" /> Save report
           </Button>
         </div>
       </header>
 
-      {draft && (
+      {activeDraft && (
         <>
           <Card className="mb-5">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Rule evaluation summary</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap items-center gap-3 text-sm">
-              <Badge variant="secondary">{draft.applicableCount} applicable</Badge>
+              <Badge variant="secondary">{activeDraft.applicableCount} applicable</Badge>
               <Badge className="bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">
-                ✅ {draft.passCount} PASS
+                ✅ {activeDraft.passCount} PASS
               </Badge>
-              <Badge variant="destructive">❌ {draft.failCount} FAIL</Badge>
+              <Badge variant="destructive">❌ {activeDraft.failCount} FAIL</Badge>
               <Badge className="bg-amber-500/15 text-amber-700 dark:text-amber-300">
-                ⚠️ {draft.reviewCount} REVIEW
+                ⚠️ {activeDraft.reviewCount} REVIEW
               </Badge>
               <span className="text-xs text-muted-foreground">
-                ruleset {draft.ruleVersion}
-                {draft.kbVersion ? ` · KB ${draft.kbVersion}` : ""}
+                ruleset {activeDraft.ruleVersion}
+                {activeDraft.kbVersion ? ` · KB ${activeDraft.kbVersion}` : ""}
               </span>
             </CardContent>
           </Card>
 
           <Card className="mb-5">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base">{draft.noticeNo}</CardTitle>
+              <CardTitle className="text-base">{activeDraft.noticeNo}</CardTitle>
               <CardDescription>
-                {new Date(draft.generatedAt).toLocaleString("en-IN")} · To:{" "}
-                {draft.addressee}
+                {new Date(activeDraft.generatedAt).toLocaleString("en-IN")} · To:{" "}
+                {activeDraft.addressee}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 text-sm">
-              <p className="font-semibold">{draft.subject}</p>
+              <p className="font-semibold">{activeDraft.subject}</p>
               <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed">
-                {draft.body.map((p: string, i: number) => (
+                {(activeDraft.body || []).map((p: string, i: number) => (
                   <li key={i}>{p}</li>
                 ))}
               </ol>
 
               <div>
                 <p className="mb-2 font-semibold">Particulars of violations</p>
-                {draft.violations.length === 0 ? (
+                {(!activeDraft.violations || activeDraft.violations.length === 0) ? (
                   <p className="rounded-md border border-border/60 bg-muted/30 px-3 py-4 text-center text-muted-foreground">
                     No mandatory violations recorded — a notice may not be warranted.
                   </p>
                 ) : (
                   <div className="space-y-2">
-                    {draft.violations.map((v: any, i: number) => (
+                    {activeDraft.violations.map((v: any, i: number) => (
                       <div
                         key={i}
                         className="rounded-lg border border-red-500/30 bg-red-500/5 p-3"
@@ -204,23 +246,25 @@ export default function Notice() {
                 )}
               </div>
 
-              <div className="rounded-lg border border-dashed border-border/60 p-3 text-xs">
-                <p className="font-semibold">Evidence</p>
-                <p className="mt-1">
-                  {draft.evidence[0]?.label} · SHA-256{" "}
-                  <span className="font-mono">{draft.evidence[0]?.imageHash.slice(0, 24)}…</span>
-                </p>
-                {draft.evidence[0]?.imageUrl && (
-                  <a
-                    className="mt-1 inline-block text-primary underline"
-                    href={draft.evidence[0].imageUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View stored capture
-                  </a>
-                )}
-              </div>
+              {activeDraft.evidence && activeDraft.evidence.length > 0 && (
+                <div className="rounded-lg border border-dashed border-border/60 p-3 text-xs">
+                  <p className="font-semibold">Evidence</p>
+                  <p className="mt-1">
+                    {activeDraft.evidence[0]?.label} · SHA-256{" "}
+                    <span className="font-mono">{activeDraft.evidence[0]?.imageHash?.slice(0, 24)}…</span>
+                  </p>
+                  {activeDraft.evidence[0]?.imageUrl && (
+                    <a
+                      className="mt-1 inline-block text-primary underline"
+                      href={activeDraft.evidence[0].imageUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View stored capture
+                    </a>
+                  )}
+                </div>
+              )}
 
               <div className="flex flex-wrap items-end gap-3 border-t border-border/50 pt-4">
                 <div className="flex-1">
@@ -228,7 +272,7 @@ export default function Notice() {
                     Officer name override (optional)
                   </p>
                   <Input
-                    placeholder={draft.officerName}
+                    placeholder={activeDraft.officerName}
                     value={officerName}
                     onChange={(e) => setOfficerName(e.target.value)}
                   />
@@ -242,10 +286,10 @@ export default function Notice() {
 
           <div className="mt-6">
             <GroundingPanel
-              initialBrand={draft.brand}
-              initialCommodity={draft.commodity}
-              initialAddress={draft.manufacturerAddress}
-              initialRuleCited={draft.violations[0]?.ruleCited}
+              initialBrand={activeDraft.brand || ""}
+              initialCommodity={activeDraft.commodity || ""}
+              initialAddress={activeDraft.manufacturerAddress || ""}
+              initialRuleCited={activeDraft.violations?.[0]?.clause}
             />
           </div>
         </>

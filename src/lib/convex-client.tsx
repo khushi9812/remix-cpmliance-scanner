@@ -731,3 +731,42 @@ export function useAction(actionRef: any) {
     return null;
   };
 }
+
+/**
+ * Convex API and DataModel proxies for zero-dependency operation
+ */
+function createApiProxy(path: string = ""): any {
+  const fn: any = function () {};
+  fn._functionName = path;
+  fn.name = path.split(":").pop() || path;
+  fn.toString = () => path;
+
+  return new Proxy(fn, {
+    get(_target, prop: string) {
+      if (prop === "_functionName") return path;
+      if (prop === "name") return path.split(":").pop() || path;
+      if (prop === "toString") return () => path;
+      const nextPath = path ? `${path}:${prop}` : prop;
+      return createApiProxy(nextPath);
+    },
+    apply(_target, _thisArg, _args) {
+      return path;
+    },
+  });
+}
+
+export const api: any = createApiProxy();
+export const internal: any = createApiProxy("internal");
+export const query = (fn: any) => fn;
+export const mutation = (fn: any) => fn;
+export const action = (fn: any) => fn;
+export const internalQuery = (fn: any) => fn;
+export const internalMutation = (fn: any) => fn;
+export const internalAction = (fn: any) => fn;
+
+export type Id<TableName extends string = string> = string & { __tableName?: TableName };
+export type Doc<TableName extends string = string> = Record<string, any> & { _id: Id<TableName> };
+export type DataModel = Record<string, any>;
+export type QueryCtx = any;
+export type MutationCtx = any;
+export type ActionCtx = any;
