@@ -362,7 +362,7 @@ export const analyzeAndRecord = action({
         });
         analysis = parseVisionJson(
           result.text ?? "",
-          "gpt-4o-mini via VLY gateway",
+          "NiriKsha Assistant",
         );
       } catch (e) {
         throw new Error(

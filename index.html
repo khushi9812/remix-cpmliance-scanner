@@ -5,15 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MetroScan — Legal Metrology Compliance Scanner</title>
+    <title>ComplyScan AI</title>
     <meta
       name="description"
-      content="Scan any packaged commodity label for Legal Metrology (Packaged Commodities) Rules, 2011 compliance — instant consumer checks and officer-grade field inspections with Fourth Schedule font calibration."
+      content="AI-powered compliance checking for packaged commodities under the Legal Metrology (Packaged Commodities) Rules, 2011."
     />
-    <meta property="og:title" content="MetroScan — Legal Metrology Compliance Scanner" />
-    <meta property="og:description" content="Scan any packaged commodity label for Legal Metrology (Packaged Commodities) Rules, 2011 compliance — instant consumer checks and officer-grade field inspections with Fourth Schedule font calibration." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div id="error-log" style="color: red; padding: 20px; font-family: monospace; white-space: pre-wrap; z-index: 9999; position: relative;"></div>
+    <script>
+      window.addEventListener('error', (event) => {
+        document.getElementById('error-log').textContent += event.error?.stack || event.message + '\n';
+      });
+      window.addEventListener('unhandledrejection', (event) => {
+        document.getElementById('error-log').textContent += (event.reason?.stack || event.reason) + '\n';
+      });
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -39,6 +39,11 @@ function drawBarcode(
 
 /** Draw a deterministic specimen label and return it as a JPEG data URL. */
 export function makeSyntheticLabel(sampleId: string): string {
+  if (sampleId === 'muesli') return '/muesli.jpg';
+  if (sampleId === 'shampoo') return '/shampoo.jpg';
+  if (sampleId === 'chips') return '/chips.jpg';
+  if (sampleId === 'water') return 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?auto=format&fit=crop&w=800&q=80';
+
   const panel = PANELS[sampleId];
   if (!panel) throw new Error(`Unknown sample: ${sampleId}`);
 
@@ -109,5 +114,41 @@ export function makeSyntheticLabel(sampleId: string): string {
   ctx.fillText(sampleId.toUpperCase(), -52, 22);
   ctx.restore();
 
-  return canvas.toDataURL("image/jpeg", 0.92);
+  // ----- Realistic Photograph Effects -----
+
+  // 1. Glossy Specular Highlight & Uneven Lighting (Cylindrical / Curved surface feel)
+  const lighting = ctx.createLinearGradient(0, 0, w, h);
+  lighting.addColorStop(0, "rgba(255,255,255,0.1)");
+  lighting.addColorStop(0.2, "rgba(255,255,255,0.4)");
+  lighting.addColorStop(0.4, "rgba(255,255,255,0)");
+  lighting.addColorStop(0.8, "rgba(0,0,0,0.05)");
+  lighting.addColorStop(1, "rgba(0,0,0,0.25)");
+  ctx.fillStyle = lighting;
+  ctx.fillRect(0, 0, w, h);
+  
+  // 2. Radial Vignette (Lens darkening at edges)
+  const vignette = ctx.createRadialGradient(w/2, h/2, Math.max(w,h)*0.3, w/2, h/2, Math.max(w,h)*0.8);
+  vignette.addColorStop(0, "rgba(0,0,0,0)");
+  vignette.addColorStop(1, "rgba(0,0,0,0.45)");
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, w, h);
+
+  // 3. Camera Lens Blur (Cheap approximation by drawing offset)
+  ctx.globalAlpha = 0.4;
+  ctx.drawImage(canvas, 1, 1);
+  ctx.drawImage(canvas, -1, 0);
+  ctx.globalAlpha = 1.0;
+
+  // 4. ISO Sensor Noise / Film Grain
+  const imageData = ctx.getImageData(0, 0, w, h);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const noise = (Math.random() - 0.5) * 22; // Random noise -11 to +11
+    data[i] = data[i] + noise;       // R
+    data[i+1] = data[i+1] + noise;   // G
+    data[i+2] = data[i+2] + noise;   // B
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  return canvas.toDataURL("image/jpeg", 0.90);
 }

@@ -10,8 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Logo } from "@/components/Logo";
+import { LocationSelector } from "@/components/location-selector";
 import { useAuth } from "@/hooks/use-auth";
 import { LABEL_SAMPLES } from "@/lib/label-samples";
+import { makeSyntheticLabel } from "@/lib/synthetic-label";
 import {
   ScanLine,
   Camera,
@@ -22,7 +24,6 @@ import {
   Database,
   FileText,
   WifiOff,
-  Stamp,
   ArrowRight,
   Scale,
   CheckCircle2,
@@ -32,39 +33,39 @@ import {
 
 const RULE_CHECKS = [
   {
-    icon: <ScanLine className="size-4" />,
+    icon: <ScanLine className="size-5" />,
     title: "MRP with ₹ symbol",
     clause: "Rule 6(1)(e)",
     detail:
       "Detects the MRP declaration and flags non-₹ currency formats such as “Rs 185”.",
   },
   {
-    icon: <ScanLine className="size-4" />,
+    icon: <ScanLine className="size-5" />,
     title: "Net quantity in SI units",
     clause: "Rule 6(1)(a)",
     detail: "g, kg, ml, l, N — non-standard units are cited as violations.",
   },
   {
-    icon: <ScanLine className="size-4" />,
+    icon: <ScanLine className="size-5" />,
     title: "Month & year of manufacture",
     clause: "Rule 6(1)(d)",
     detail: "Must be MM/YYYY or MM/YY; anything else gets flagged.",
   },
   {
-    icon: <ScanLine className="size-4" />,
+    icon: <ScanLine className="size-5" />,
     title: "Manufacturer & consumer care",
     clause: "Rule 6(1)(b), (f)",
     detail: "Name/address of maker plus helpline phone, email or URL.",
   },
   {
-    icon: <Ruler className="size-4" />,
+    icon: <Ruler className="size-5" />,
     title: "Character height slabs",
     clause: "Fourth Schedule",
     detail:
       "Physical calibration turns pixels into millimetres and validates print size per package-weight slab.",
   },
   {
-    icon: <ScanLine className="size-4" />,
+    icon: <ScanLine className="size-5" />,
     title: "Country of origin",
     clause: "Rule 6(1)(i)",
     detail: "“Made in …” / “Country of Origin: …” must be declared.",
@@ -72,31 +73,32 @@ const RULE_CHECKS = [
 ];
 
 export default function Landing() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const isOfficer = !isAuthenticated || user?.role === "officer";
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Ledger-paper top strip */}
-      <div className="ledger-grid border-b bg-card/60">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-2">
-            <Logo className="size-8" />
-            <div className="leading-tight">
-              <p className="text-sm font-bold tracking-tight">MetroScan</p>
-              <p className="text-[11px] text-muted-foreground">
-                Legal Metrology (Packaged Commodities) Rules, 2011
-              </p>
+      {/* Navbar */}
+      <div className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-8">
+            <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+              <Logo className="size-8 text-primary" />
+              <span className="font-serif text-xl font-bold tracking-tight">ComplyScan</span>
+            </Link>
+            <div className="hidden sm:block">
+              <LocationSelector />
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Button asChild size="sm" variant="ghost">
+          <div className="flex items-center gap-4">
+            <Button asChild size="sm" variant="ghost" className="hidden sm:flex rounded-full px-6">
               <Link to="/scan">
-                <ScanLine className="size-4" /> Scan a label
+                Scan a label
               </Link>
             </Button>
-            <Button asChild size="sm">
+            <Button asChild size="sm" className="rounded-full px-6 shadow-soft">
               <Link to={isAuthenticated ? "/dashboard" : "/auth?returnTo=%2Fdashboard"}>
-                <Lock className="size-4" /> Officer portal
+                {user?.role === "consumer" ? "Consumer Dashboard" : "Officer Portal"}
               </Link>
             </Button>
           </div>
@@ -104,316 +106,275 @@ export default function Landing() {
       </div>
 
       {/* Hero */}
-      <section className="draft-grid border-b">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-2 lg:py-24">
+      <section className="relative overflow-hidden bg-background text-foreground">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--pastel-lavender)]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[var(--pastel-green)]/15 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 animate-pulse" />
+        <div className="absolute inset-0 opacity-[0.04] dot-pattern" />
+        <div className="mx-auto grid max-w-7xl gap-16 px-6 py-10 lg:grid-cols-2 lg:py-16 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col justify-center"
           >
-            <Badge variant="outline" className="spec-tag mb-4">
-              <Stamp className="size-3.5" /> Lens-style AI · Rule 6 · Fourth Schedule
+            <Badge variant="outline" className="mb-6 w-fit rounded-full border-border bg-muted/50 px-4 py-1.5 text-sm backdrop-blur-md text-foreground">
+              ✨ Automated Rules Engine
             </Badge>
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
-              Every pack tells the truth.
-              <br />
-              <span className="marker-yellow">We check the fine print.</span>
+            <h1 className="font-serif text-6xl sm:text-7xl lg:text-[6.5rem] font-extrabold leading-[1.05] tracking-tight text-foreground">
+              Scan.<br />
+              <span className="text-[var(--pastel-lavender-fg)]">Verify.</span><br />
+              <span className="text-[var(--pastel-green-fg)]">Comply.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base text-muted-foreground">
-              Point your camera like Google Lens. Our vision AI understands the
-              whole package — brand, label text, barcode, logos — reads the
-              mandatory declarations it can actually see, cross-checks the
-              barcode against product databases, and validates everything
-              against the Legal Metrology (Packaged Commodities) Rules 2011.
+            <p className="mt-6 max-w-lg text-lg text-muted-foreground font-light leading-relaxed">
+              Ensure packaged commodities meet the Legal Metrology Rules, 2011. Our vision scanner reads labels instantly, checking mandatory declarations and physical font calibration.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild size="lg">
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Button asChild size="lg" className="rounded-full bg-[var(--pastel-green)] text-[var(--pastel-green-fg)] hover:bg-[var(--pastel-green)]/90 hover:scale-105 transition-all h-14 px-8 text-base shadow-[0_0_40px_rgba(var(--pastel-green),0.3)]">
                 <Link to="/scan">
-                  <Camera className="size-5" /> Scan a label free
+                  <Camera className="mr-2 size-5" /> Check a Product
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" variant="outline" className="rounded-full border-border bg-transparent text-foreground hover:bg-muted h-14 px-8 text-base backdrop-blur-sm">
                 <Link to={isAuthenticated ? "/dashboard" : "/auth?returnTo=%2Fdashboard"}>
-                  <Gavel className="size-5" /> Enforcement portal
+                  <Gavel className="mr-2 size-5" /> {user?.role === "consumer" ? "Consumer Dashboard" : "Enforcement Portal"}
                 </Link>
               </Button>
             </div>
-            <p className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-              <ShieldCheck className="size-3.5" />
-              No account needed to scan · evidence hashed with SHA-256
+            <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground">
+              <ShieldCheck className="size-4" />
+              Secure, instant, and privacy-first analysis.
             </p>
           </motion.div>
 
-          {/* Verdict specimen */}
+          {/* Hero Visual Mockup */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex items-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1, y: [-4, 6, -4] }}
+            transition={{ opacity: { duration: 1, delay: 0.2 }, scale: { duration: 1, delay: 0.2 }, y: { repeat: Infinity, duration: 8, ease: "easeInOut" } }}
+            className="relative flex items-center justify-center lg:justify-end"
           >
-            <Card className="receipt-paper w-full">
-              <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm">Instant Scan Result</CardTitle>
-                  <span className="stamp rotate-[-6deg] text-[10px] text-red-700">
-                    Flagged
-                  </span>
-                </div>
-                <CardDescription className="font-mono text-[11px]">
-                  SCN-9F2A41… · 3 PASS · 2 FAIL · 1 REVIEW
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm">
-                {[
-                  { label: "MRP", value: "Rs 185 — ₹ symbol missing", tone: "warn" },
-                  { label: "Net Quantity", value: "500 g", tone: "ok" },
-                  { label: "Mfd / Pkd", value: "03/2026", tone: "ok" },
-                  { label: "Manufacturer", value: "Sunrise Foods Pvt. Ltd.", tone: "ok" },
-                  { label: "Consumer Care", value: "Not found on label", tone: "bad" },
-                  { label: "Country of Origin", value: "Not found on label", tone: "bad" },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className={`flex items-center justify-between rounded-md border px-3 py-1.5 ${
-                      row.tone === "ok"
-                        ? "border-emerald-700/30 bg-emerald-700/5"
-                        : row.tone === "warn"
-                          ? "border-amber-600/50 bg-amber-600/5"
-                          : "border-red-700/40 bg-red-700/5"
-                    }`}
-                  >
-                    <span className="text-xs text-muted-foreground">
-                      {row.label}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-xs font-medium">
-                      {row.tone === "ok" && (
-                        <CheckCircle2 className="size-3.5 text-emerald-700" />
-                      )}
-                      {row.tone !== "ok" && (
-                        <AlertTriangle
-                          className={`size-3.5 ${row.tone === "warn" ? "text-amber-700" : "text-red-700"}`}
-                        />
-                      )}
-                      {row.value}
-                    </span>
+            <div className="relative w-full max-w-md rounded-[2.5rem] bg-card/40 backdrop-blur-2xl p-6 shadow-[0_8px_40px_0_rgba(0,0,0,0.08)] border border-white/30 overflow-hidden text-card-foreground">
+              <div className="mb-4 flex items-center justify-between">
+                <span className="font-serif text-lg font-bold">Analysis Result</span>
+                <Badge className="badge-fail rounded-full px-3 py-1">NON-COMPLIANT</Badge>
+              </div>
+              <div className="space-y-4">
+                {/* Mockup Rows */}
+                <div className="rounded-2xl bg-muted/50 p-4 border border-border/50">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-sm font-medium text-muted-foreground">Maximum Retail Price</span>
+                    <CheckCircle2 className="size-5 text-[var(--pastel-green-fg)]" />
                   </div>
-                ))}
-                <p className="pt-1 text-xs text-muted-foreground">
-                  Every verdict cites its rule and shows the printed evidence it
-                  was read from — nothing is invented. Uncertain areas come
-                  back as REVIEW, never as false failures.
-                </p>
-              </CardContent>
-            </Card>
+                  <p className="text-xl font-bold font-serif">₹ 149.00</p>
+                  <p className="text-xs text-muted-foreground mt-1">Rule 6(1)(e) satisfied.</p>
+                </div>
+                
+                <div className="rounded-2xl border-2 border-[var(--pastel-red)] bg-[var(--pastel-red)]/10 p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-sm font-medium text-[var(--pastel-red-fg)]">Net Quantity</span>
+                    <AlertTriangle className="size-5 text-[var(--pastel-red-fg)]" />
+                  </div>
+                  <p className="text-xl font-bold font-serif line-through opacity-70">500 grams</p>
+                  <p className="text-xs text-[var(--pastel-red-fg)] mt-1 font-medium">Violation: Non-standard unit used. Must be 'g' or 'kg'.</p>
+                </div>
+
+                <div className="rounded-2xl bg-muted/50 p-4 border border-border/50">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-sm font-medium text-muted-foreground">Consumer Care</span>
+                    <CheckCircle2 className="size-5 text-[var(--pastel-green-fg)]" />
+                  </div>
+                  <p className="text-sm font-medium truncate">care@example.com / 1800-123-456</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Decorative blurs */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full bg-gradient-to-tr from-[var(--pastel-lavender)]/20 via-[var(--pastel-green)]/10 to-[var(--pastel-yellow)]/20 blur-[100px]" />
           </motion.div>
         </div>
       </section>
 
-      {/* Dual portals */}
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <div>
-            <p className="spec-tag mb-2 inline-flex">Two portals, one rulebook</p>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Built for shoppers and for the field
-            </h2>
-          </div>
-        </div>
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Card className="group transition hover:border-primary/50">
-            <CardHeader>
-              <div className="mb-2 flex size-10 items-center justify-center rounded-md bg-emerald-700/10 text-emerald-800">
-                <Camera className="size-5" />
-              </div>
-              <CardTitle>Consumer Portal</CardTitle>
-              <CardDescription>
-                Check any pack in seconds — no signup.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>· Upload, live camera, or e-commerce image URL</p>
-              <p>· Lens-style AI reads brand, declarations &amp; barcode — no keyword OCR</p>
-              <p>· Rule-by-rule verdicts with evidence highlights &amp; confidence</p>
-              <p>· One-click grievance draft for the National Consumer Helpline</p>
-              <Button asChild variant="outline" className="mt-3">
-                <Link to="/scan">
-                  Open scanner <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="group transition hover:border-primary/50">
-            <CardHeader>
-              <div className="mb-2 flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary">
-                <Gavel className="size-5" />
-              </div>
-              <CardTitle>Enforcement Officer Portal</CardTitle>
-              <CardDescription>
-                Field inspections with legal-grade output.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>· Geotagged, timestamped, SHA-256 evidence chain-of-custody</p>
-              <p>· Barcode ↔ database cross-check flags conflicting information</p>
-              <p>· Font calibration against Fourth Schedule slabs</p>
-              <p>· One-click PDF / editable notice with cited clauses</p>
-              <Button asChild className="mt-3">
-                <Link to={isAuthenticated ? "/dashboard" : "/auth?returnTo=%2Fdashboard"}>
-                  Enter portal <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Rule coverage */}
-      <section className="border-y bg-card/40">
-        <div className="mx-auto max-w-6xl px-4 py-16">
-          <p className="spec-tag mb-2 inline-flex">
-            <Scale className="size-3.5" /> What the engine checks
-          </p>
-          <h2 className="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
-            The rulebook, encoded
+      {/* How It Works */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
+        <div className="text-center mb-16">
+          <Badge variant="outline" className="mb-4 rounded-full px-4 py-1.5 bg-muted/50">
+            <Scale className="size-4 mr-2" /> Pipeline
+          </Badge>
+          <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl">
+            How the engine works
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {RULE_CHECKS.map((c) => (
-              <div
-                key={c.clause}
-                className="evidence-frame rounded-md p-4 transition hover:border-primary/50"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="flex size-8 items-center justify-center rounded-md bg-primary/10 text-primary">
-                    {c.icon}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
-                    {c.clause}
-                  </span>
-                </div>
-                <p className="mt-3 text-sm font-semibold">{c.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{c.detail}</p>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
-
-      {/* Officer feature strip */}
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
-              icon: <ScanLine className="size-4" />,
-              t: "Lens-style vision analysis",
-              d: "Whole-image understanding — text in any layout, logos, symbols and the barcode — with no OCR keyword matching.",
+              step: "01",
+              title: "Scan & Capture",
+              desc: "Upload an image or use your device camera. Our pipeline handles glare, skew, and low light.",
+              color: "bg-[var(--pastel-lavender)] text-[var(--pastel-lavender-fg)]"
             },
             {
-              icon: <Ruler className="size-4" />,
-              t: "Physical calibration",
-              d: "mm-per-pixel from real package height; character heights measured in millimetres.",
+              step: "02",
+              title: "Automated Detection",
+              desc: "Vision system extracts text, logos, barcodes, and spatial relationships without relying solely on OCR.",
+              color: "bg-[var(--pastel-green)] text-[var(--pastel-green-fg)]"
             },
             {
-              icon: <WifiOff className="size-4" />,
-              t: "Offline-first field mode",
-              d: "Queued captures persist locally with hashes and sync when back online.",
+              step: "03",
+              title: "Rules Check",
+              desc: "Extracted data is cross-referenced against the Legal Metrology (Packaged Commodities) Rules, 2011.",
+              color: "bg-[var(--pastel-yellow)] text-[var(--pastel-yellow-fg)]"
             },
             {
-              icon: <FileText className="size-4" />,
-              t: "Notice generator",
-              d: "Legal-grade PDF and editable Word notices with evidence and citations.",
-            },
-            {
-              icon: <Database className="size-4" />,
-              t: "Barcode cross-verification",
-              d: "GTIN checksum validation and product-database lookup; conflicts force REVIEW, never guesswork.",
-            },
-            {
-              icon: <BarChart3 className="size-4" />,
-              t: "Analytics & heatmaps",
-              d: "Pass/fail ratios, repeat offenders, state/district violation density.",
-            },
-          ].map((f) => (
-            <Card key={f.t}>
-              <CardContent className="p-4">
-                <span className="flex size-8 items-center justify-center rounded-md bg-accent text-accent-foreground">
-                  {f.icon}
-                </span>
-                <p className="mt-3 text-sm font-semibold">{f.t}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{f.d}</p>
+              step: "04",
+              title: "Compliance Report",
+              desc: "Get an instant, officer-grade verdict citing specific rules, with actionable remediation steps.",
+              color: "bg-[var(--pastel-red)] text-[var(--pastel-red-fg)]"
+            }
+          ].map((item, i) => (
+            <Card key={item.step} className="border-none shadow-soft overflow-hidden rounded-[2rem] bg-card hover:-translate-y-2 transition-transform duration-300">
+              <div className={`h-2 w-full ${item.color}`} />
+              <CardContent className="p-8">
+                <span className="font-serif text-5xl font-black text-muted-foreground/20 block mb-6">{item.step}</span>
+                <h3 className="font-serif text-2xl font-bold mb-3">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Specimen strip */}
-      <section className="border-y bg-card/40">
-        <div className="mx-auto max-w-6xl px-4 py-12">
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <p className="spec-tag mb-2 inline-flex">
-                <Database className="size-3.5" /> Try the pipeline
-              </p>
-              <h2 className="text-xl font-bold tracking-tight">
-                Four specimen labels are waiting in the scanner
+      {/* Feature Breakdown */}
+      <section className="bg-muted/30 py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <h2 className="font-serif text-4xl font-bold tracking-tight sm:text-5xl mb-6">
+                Comprehensive statutory coverage
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Each one exercises a different part of the pipeline — from a
-                fully-compliant food panel to tiny “Rs.” print — with pinned,
-                honest ground truth.
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We've encoded the Legal Metrology Act, 2009 and the Packaged Commodities Rules, 2011 into a strict, verifiable matrix.
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {LABEL_SAMPLES.map((s) => (
-                <Link
-                  key={s.id}
-                  to="/scan"
-                  className="spec-tag transition hover:border-primary hover:text-primary"
-                  title={`Try this example: ${s.verdictHint}`}
-                >
-                  {s.emoji} {s.name}
-                </Link>
-              ))}
-            </div>
+            <Button asChild size="lg" variant="outline" className="rounded-full px-8 shadow-sm">
+              <Link to="/scan">View all rules</Link>
+            </Button>
+          </div>
+          
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {RULE_CHECKS.map((c, i) => (
+              <div
+                key={c.clause}
+                className="group relative rounded-[2rem] border bg-card p-8 shadow-soft transition hover:border-primary/20"
+              >
+                <div className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-muted text-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  {c.icon}
+                </div>
+                <Badge variant="secondary" className="mb-4 rounded-full px-3 py-1 font-mono text-xs uppercase tracking-wider">
+                  {c.clause}
+                </Badge>
+                <h3 className="font-serif text-xl font-bold mb-3">{c.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {c.detail}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="mx-auto max-w-6xl px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Know what the label owes you.
-        </h2>
-        <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
-          Scan your kitchen shelf. File what's wrong. Let the rulebook do the
-          talking.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button asChild size="lg">
-            <Link to="/scan">
-              <ScanLine className="size-5" /> Scan a label now
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link to={isAuthenticated ? "/dashboard" : "/auth?returnTo=%2Fdashboard"}>
-              <Lock className="size-5" /> Officer sign-in
-            </Link>
-          </Button>
+      {/* Dual Portals */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 text-foreground">
+          
+          <div className="rounded-[2.5rem] bg-card p-8 sm:p-12 border border-border/80 shadow-soft relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="mb-6 flex size-16 items-center justify-center rounded-3xl bg-[var(--pastel-lavender)] text-[var(--pastel-lavender-fg)] shadow-sm">
+                <ScanLine className="size-8" />
+              </div>
+              <h3 className="font-serif text-4xl font-bold mb-4 text-foreground">Consumers &amp; Businesses</h3>
+              <p className="text-lg mb-8 text-muted-foreground leading-relaxed max-w-md">
+                Upload or capture an image to verify packaging compliance instantly. No signup required for single scans.
+              </p>
+              <ul className="space-y-4 mb-10 text-foreground">
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-lavender-fg)]" /> Live camera and image upload</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-lavender-fg)]" /> System detects declarations automatically</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-lavender-fg)]" /> Detailed violation explanations</li>
+              </ul>
+              <Button asChild size="lg" className="rounded-full bg-[var(--pastel-lavender)] text-[var(--pastel-lavender-fg)] hover:bg-[var(--pastel-lavender)]/80 px-8 shadow-sm">
+                <Link to="/scan">
+                  Open Scanner <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          <div className="rounded-[2.5rem] bg-card p-8 sm:p-12 border border-border/80 shadow-soft relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="mb-6 flex size-16 items-center justify-center rounded-3xl bg-[var(--pastel-green)] text-[var(--pastel-green-fg)] shadow-sm">
+                <ShieldCheck className="size-8" />
+              </div>
+              <h3 className="font-serif text-4xl font-bold mb-4 text-foreground">Enforcement Officers</h3>
+              <p className="text-lg mb-8 text-muted-foreground leading-relaxed max-w-md">
+                A professional suite for field inspections, providing legal-grade output and historical tracking.
+              </p>
+              <ul className="space-y-4 mb-10 text-foreground">
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-green-fg)]" /> Geotagged &amp; timestamped evidence</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-green-fg)]" /> Font calibration vs Fourth Schedule</li>
+                <li className="flex items-center gap-3"><CheckCircle2 className="size-5 text-[var(--pastel-green-fg)]" /> PDF Notice generation</li>
+              </ul>
+              <Button asChild size="lg" className="rounded-full bg-[var(--pastel-green)] text-[var(--pastel-green-fg)] hover:bg-[var(--pastel-green)]/90 px-8 shadow-sm">
+                <Link to={isAuthenticated ? "/dashboard" : "/auth?returnTo=%2Fdashboard"}>
+                  Officer Sign-In <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+            </div>
+            <div className="absolute -z-0 -bottom-32 -right-32 size-[500px] rounded-full bg-[var(--pastel-green)]/10 blur-[100px]" />
+          </div>
+
+        </div>
+      </section>
+
+      {/* Try Pipeline */}
+      <section className="bg-muted/30 py-20">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <h2 className="font-serif text-3xl font-bold mb-8">Try with specimen labels</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {LABEL_SAMPLES.map((s) => {
+              // Generate the realistic image for the thumbnail
+              const imgSrc = makeSyntheticLabel(s.id);
+              return (
+                <Link
+                  key={s.id}
+                  to={`/scan?specimen=${s.id}`}
+                  className="group flex items-center gap-4 rounded-full border bg-card pr-6 p-2 shadow-sm transition hover:-translate-y-1 hover:border-[var(--pastel-green)] hover:shadow-md"
+                >
+                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-border/50 shadow-inner bg-muted/20">
+                    <img src={imgSrc} alt={s.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-semibold leading-tight">{s.name}</p>
+                    <p className="text-[11px] text-muted-foreground group-hover:text-[var(--pastel-green-fg)] mt-0.5">{s.verdictHint}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t bg-card/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-muted-foreground sm:flex-row">
-          <div className="flex items-center gap-2">
-            <Logo className="size-6" />
-            <span>MetroScan · Automated compliance for packaged commodities</span>
+      <footer className="border-t bg-background">
+        <div className="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <Logo className="size-8 text-primary" />
+            <span className="font-serif text-xl font-bold">ComplyScan</span>
           </div>
-          <span>
-            Rules engine v2 (vision) · References to the Legal Metrology Act,
-            2009 &amp; PC Rules, 2011 are indicative.
-          </span>
+          <p className="text-sm text-muted-foreground text-center md:text-right max-w-sm">
+            Automated compliance for packaged commodities. References to the Legal Metrology Act, 2009 & PC Rules, 2011 are indicative.
+          </p>
         </div>
       </footer>
     </div>

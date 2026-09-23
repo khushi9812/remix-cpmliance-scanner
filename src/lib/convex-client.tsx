@@ -262,7 +262,7 @@ function inspectionToScanDoc(insp: any): ScanDoc {
       otherDeclarations: [],
       fields: insp.extractedData?.fields || [],
       warnings: [],
-      engine: insp.aiEngineUsed || "Google Gemini Vision API",
+      engine: insp.aiEngineUsed || "NiriKsha Assistant",
       imageQualityConfidence: 0.9,
     } as any,
     database: {
@@ -408,6 +408,17 @@ export function useConvexAuth() {
 export function useAuthActions() {
   return {
     signIn: async (provider: string, formData?: any) => {
+      if (provider === "anonymous") {
+        const user: UserDoc = {
+          _id: `user_anon_${Date.now()}`,
+          name: "Guest Consumer",
+          isAnonymous: true,
+          role: "consumer",
+        };
+        saveUser(user);
+        return;
+      }
+      
       let email = "inspector@lm.gov.in";
       if (formData instanceof FormData) {
         const rawEmail = formData.get("email");

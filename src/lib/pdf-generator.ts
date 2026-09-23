@@ -69,7 +69,7 @@ export function downloadOfficialPdfReport(inspection: InspectionDetail): void {
   doc.text(
     `Date: ${new Date(inspection.timestamp).toLocaleDateString("en-IN", {
       dateStyle: "medium",
-    })} | AI Engine: ${inspection.aiEngineUsed}`,
+    })} | Processing Engine: ${inspection.aiEngineUsed}`,
     18,
     y + 24
   );

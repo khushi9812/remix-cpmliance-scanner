@@ -216,9 +216,15 @@ export const evidenceUrl = query({
 // ---------------------------------------------------------------------------
 
 export const analytics = query({
-  args: {},
-  handler: async (ctx) => {
-    const all = await ctx.db.query("scans").withIndex("by_createdAt").collect();
+  args: {
+    portalRole: v.optional(v.union(v.literal("consumer"), v.literal("officer"))),
+  },
+  handler: async (ctx, args) => {
+    let all = await ctx.db.query("scans").withIndex("by_createdAt").collect();
+    
+    if (args.portalRole) {
+      all = all.filter(s => s.portalRole === args.portalRole);
+    }
 
     const total = all.length;
     const pass = all.filter((s) => s.decision === "PASS").length;
@@ -321,6 +327,23 @@ export const analytics = query({
       byState,
       violationTypes,
     };
+  },
+});
+
+/** Geo-points for heatmap: all scans with a lat/lng, returning intensity by decision. */
+export const geoPoints = query({
+  args: {},
+  handler: async (ctx) => {
+    const all = await ctx.db.query("scans").withIndex("by_createdAt").collect();
+    return all
+      .filter((s) => s.geolocation?.lat != null && s.geolocation?.lng != null)
+      .map((s) => ({
+        lat: s.geolocation!.lat!,
+        lng: s.geolocation!.lng!,
+        decision: s.decision as "PASS" | "FAIL" | "REVIEW",
+        productName: s.productName ?? "Unknown Product",
+        brand: s.brand ?? "",
+      }));
   },
 });
 

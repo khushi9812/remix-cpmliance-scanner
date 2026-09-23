@@ -96,8 +96,8 @@ const pct = (n: number) => `${Math.round(n * 100)}%`;
 
 /** Human labels for the KB validation methods (requirement cards). */
 const VALIDATION_LABELS: Record<string, string> = {
-  ai_format_check: "AI format check on the read value",
-  ai_presence_with_officer: "AI presence check + officer confirmation",
+  ai_format_check: "System format check on the read value",
+  ai_presence_with_officer: "System presence check + officer confirmation",
   calibrated_measurement: "Calibrated measurement (physical height needed)",
   officer_verification: "Officer / physical verification",
   out_of_label_scope: "Outside label scope (transactional)",
@@ -691,7 +691,7 @@ export function DebugPanel({
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm">3 · Extracted fields (AI)</CardTitle>
+            <CardTitle className="text-sm">3 · Extracted fields (System)</CardTitle>
           </CardHeader>
           <CardContent>
             <JsonBlock
@@ -705,7 +705,7 @@ export function DebugPanel({
               }))}
             />
             <p className="mt-2 text-xs text-muted-foreground">
-              AI image-quality confidence: {pct(a.imageQualityConfidence)}
+              System image-quality confidence: {pct(a.imageQualityConfidence)}
               {a.warnings.length > 0
                 ? ` · warnings: ${a.warnings.join(" | ")}`
                 : ""}
@@ -872,7 +872,7 @@ export function AnalysisReport({
                       <StatusChip status={r.status} />
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      AI interpretation: <b>{r.detected}</b>
+                      System interpretation: <b>{r.detected}</b>
                     </p>
                     {r.evidence && (
                       <p className="rounded bg-muted/50 px-2 py-1 font-mono text-xs">

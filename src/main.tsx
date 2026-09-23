@@ -133,6 +133,7 @@ createRoot(document.getElementById("root")!).render(
                   </RequireAuth>
                 }
               />
+
               <Route
                 path="/notice/:scanId"
                 element={

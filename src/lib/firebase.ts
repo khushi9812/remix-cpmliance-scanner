@@ -92,7 +92,7 @@ export async function syncInspectionToFirestore(inspection: InspectionDetail): P
       criticalViolationsCount: inspection.compliance?.criticalViolations?.length || 0,
       imageUrl: inspection.imageUrl || "",
       inspectorSummary: inspection.inspectorSummary || "",
-      aiEngineUsed: inspection.aiEngineUsed || "gemini",
+      aiEngineUsed: inspection.aiEngineUsed || "NiriKsha Assistant",
       dataJson: JSON.stringify(inspection),
     };
     await setDoc(doc(db, "inspections", inspection.id), payload);

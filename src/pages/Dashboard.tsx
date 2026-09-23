@@ -5,6 +5,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { useAction, useMutation, useQuery } from "@/lib/convex-client";
 import { useNavigate } from "react-router";
+import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +29,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ArrowLeft,
+  MapPin,
   ArrowRight,
   BarChart3,
   Camera,
@@ -44,11 +46,21 @@ import {
   Sparkles,
   Database,
   Trash2,
+  LogOut,
+  Activity,
+  ShieldCheck,
+  AlertTriangle,
+  TrendingUp,
 } from "lucide-react";
+import { LocationSelector } from "@/components/location-selector";
+import { ViolationHeatmapModal } from "@/components/violation-heatmap";
 import { GroundingPanel } from "@/components/grounding-panel";
 import {
-  Bar,
-  BarChart,
+  Area,
+  AreaChart,
+  PieChart,
+  Pie,
+  Cell,
   CartesianGrid,
   ResponsiveContainer,
   Tooltip as ChartTooltip,
@@ -73,6 +85,118 @@ const DECISION_COLORS: Record<string, string> = {
   REVIEW: "#f59e0b",
 };
 
+function ConsumerOverview({ onViewRepository }: { onViewRepository?: () => void }) {
+  const analytics = useQuery(api.scans.analytics, { portalRole: "consumer" });
+
+  if (!analytics) {
+    return (
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Skeleton key={i} className="h-24 w-full" />
+        ))}
+      </div>
+    );
+  }
+
+  const cards = [
+    { label: "My Total Scans", value: analytics.total },
+    { label: "Compliant Products", value: analytics.pass },
+    { label: "Non-compliant Found", value: analytics.fail },
+    { label: "Needs review", value: analytics.review },
+  ];
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {cards.map((c) => (
+          <Card key={c.label} className="border-none shadow-soft rounded-3xl bg-card overflow-hidden relative">
+            <div className={`absolute left-0 top-0 bottom-0 w-1 ${
+              c.label.includes('Compliant Products') ? 'bg-green-500' :
+              c.label.includes('Non-compliant') ? 'bg-red-500' :
+              c.label.includes('review') ? 'bg-amber-500' :
+              'bg-[var(--pastel-green-fg)]'
+            }`} />
+            <CardContent className="p-6 pl-7">
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{c.label}</p>
+              <p className="text-4xl font-serif font-bold tracking-tight">{c.value}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      
+      <div className="text-center py-10 bg-muted/20 rounded-3xl border border-border/50">
+        <h3 className="font-serif text-xl font-bold mb-2">Want to see all your scans?</h3>
+        <Button onClick={onViewRepository} variant="outline" className="rounded-full mt-2 border-border/60 hover:bg-muted/40">
+          View Scan History <ArrowRight className="ml-2 size-4" />
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+function NewConsumerScan() {
+  const navigate = useNavigate();
+
+  const runVision = async (prepared: any) => {
+    toast.info("Image captured. Initializing vision analysis...");
+    navigate("/scan", { state: { preparedCapture: prepared } });
+  };
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-6">
+      <Card className="border-none shadow-soft rounded-3xl overflow-hidden">
+        <CardHeader className="bg-muted/10 border-b px-8 py-6">
+          <CardTitle className="flex items-center gap-2 font-serif text-xl">
+            <ScanLine className="h-5 w-5 text-[var(--pastel-green-fg)]" /> New Scan
+          </CardTitle>
+          <CardDescription className="text-sm mt-1">
+            Scan a packaged product to instantly verify its compliance with Legal Metrology rules.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 gap-6 md:grid-cols-2 p-8">
+          <label className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-border/60 bg-muted/20 px-4 py-12 text-center transition-colors hover:bg-muted/40 hover:border-border">
+            <div className="rounded-full bg-background p-4 shadow-sm">
+              <Upload className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div>
+              <p className="font-semibold">Upload Image</p>
+              <p className="text-xs text-muted-foreground mt-1">JPG, PNG up to 10MB</p>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) void prepareCapture(f, "upload").then((p) => runVision(p));
+              }}
+            />
+          </label>
+          <label className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-[var(--pastel-green)]/40 bg-[var(--pastel-green)]/5 px-4 py-12 text-center transition-colors hover:bg-[var(--pastel-green)]/10 hover:border-[var(--pastel-green)]/60">
+            <div className="rounded-full bg-background p-4 shadow-sm text-[var(--pastel-green-fg)]">
+              <Camera className="h-8 w-8" />
+            </div>
+            <div>
+              <p className="font-semibold text-[var(--pastel-green-fg)]">Capture with Camera</p>
+              <p className="text-xs text-muted-foreground mt-1">Take a clear photo of the label</p>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) void prepareCapture(f, "camera").then((p) => runVision(p));
+              }}
+            />
+          </label>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
 function AnalyticsOverview({ onViewRepository }: { onViewRepository?: () => void }) {
   const analytics = useQuery(api.scans.analytics, {});
 
@@ -92,111 +216,150 @@ function AnalyticsOverview({ onViewRepository }: { onViewRepository?: () => void
     { label: "Non-compliant (FAIL)", value: analytics.fail },
     { label: "Needs review", value: analytics.review },
   ];
-
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {cards.map((c) => (
-          <Card key={c.label} className="py-4">
-            <CardContent className="px-4">
-              <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className="mt-1 text-2xl font-bold">{c.value}</p>
+          <Card key={c.label} className="border-none shadow-soft rounded-3xl bg-card overflow-hidden relative">
+            {/* Colored left border accent */}
+            <div className={`absolute left-0 top-0 bottom-0 w-1 ${
+              c.label.includes('PASS') ? 'bg-green-500' :
+              c.label.includes('FAIL') ? 'bg-red-500' :
+              c.label.includes('review') ? 'bg-amber-500' :
+              'bg-[var(--pastel-lavender-fg)]'
+            }`} />
+            <CardContent className="p-6 pl-7">
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{c.label}</p>
+              <p className="text-4xl font-serif font-bold tracking-tight">{c.value}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm">
-              <BarChart3 className="h-4 w-4 text-primary" /> Verdicts — last 14 days
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Verdicts Area Chart (Takes up 2 columns) */}
+        <Card className="border-none shadow-soft rounded-3xl bg-card lg:col-span-2">
+          <CardHeader className="pb-4">
+            <CardTitle className="font-serif text-xl flex items-center gap-2">
+              <Activity className="size-5 text-[var(--pastel-lavender-fg)]" /> Verdicts (Last 14 days)
             </CardTitle>
           </CardHeader>
-          <CardContent className="h-64">
+          <CardContent className="h-[320px] pt-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={analytics.byDay}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(128,128,128,0.2)" />
-                <XAxis dataKey="date" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis fontSize={10} tickLine={false} axisLine={false} allowDecimals={false} />
-                <ChartTooltip />
-                <Bar dataKey="pass" stackId="a" fill={DECISION_COLORS.PASS} radius={[0, 0, 2, 2]} />
-                <Bar dataKey="review" stackId="a" fill={DECISION_COLORS.REVIEW} />
-                <Bar dataKey="fail" stackId="a" fill={DECISION_COLORS.FAIL} radius={[2, 2, 0, 0]} />
-              </BarChart>
+              <AreaChart data={analytics.byDay} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorPass" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorFail" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorReview" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.5} />
+                <XAxis dataKey="date" fontSize={11} tickLine={false} axisLine={false} tickMargin={10} minTickGap={20} />
+                <YAxis fontSize={11} tickLine={false} axisLine={false} allowDecimals={false} tickMargin={10} />
+                <ChartTooltip 
+                  contentStyle={{borderRadius: '1rem', border: '1px solid var(--border)', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.1)', background: 'var(--card)'}}
+                  itemStyle={{fontSize: '13px', fontWeight: 600}}
+                />
+                <Area type="monotone" dataKey="pass" stackId="1" stroke="#10b981" strokeWidth={3} fill="url(#colorPass)" />
+                <Area type="monotone" dataKey="review" stackId="2" stroke="#f59e0b" strokeWidth={3} fill="url(#colorReview)" />
+                <Area type="monotone" dataKey="fail" stackId="3" stroke="#ef4444" strokeWidth={3} fill="url(#colorFail)" />
+              </AreaChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm">
-              <Gavel className="h-4 w-4 text-primary" /> Most frequent violations
+        {/* Compliance Health Score Gauge (Takes 1 column) */}
+        <Card className="border-none shadow-soft rounded-3xl bg-card flex flex-col">
+          <CardHeader className="pb-0">
+            <CardTitle className="font-serif text-xl flex items-center gap-2">
+              <ShieldCheck className="size-5 text-[var(--pastel-green-fg)]" /> Health Score
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2">
-            {analytics.violationTypes.length === 0 && (
-              <p className="text-sm text-muted-foreground">No violations recorded yet.</p>
-            )}
-            {analytics.violationTypes.map((v: any) => (
-              <div
-                key={v.category}
-                className="flex items-center justify-between gap-2 border-b border-border/40 pb-2 text-sm last:border-0"
-              >
-                <span className="min-w-0 truncate">{v.category}</span>
-                <Badge variant="destructive">{v.count}</Badge>
+          <CardContent className="flex-1 flex flex-col items-center justify-center p-6">
+            <div className="relative h-48 w-48">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={[
+                      { name: 'Compliant', value: analytics.complianceRatio },
+                      { name: 'Non-Compliant', value: 100 - analytics.complianceRatio }
+                    ]}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={65}
+                    outerRadius={85}
+                    startAngle={90}
+                    endAngle={-270}
+                    dataKey="value"
+                    stroke="none"
+                    cornerRadius={8}
+                  >
+                    <Cell fill="#10b981" />
+                    <Cell fill="var(--muted)" />
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span className="text-4xl font-bold font-serif tabular-nums text-green-600">{analytics.complianceRatio}%</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mt-1">Compliant</span>
               </div>
-            ))}
+            </div>
+            <p className="text-sm text-center text-muted-foreground mt-4 leading-relaxed">
+              Based on the last 14 days of scanning activity across your jurisdiction.
+            </p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Repeat offender brands</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {analytics.repeatOffenders.length === 0 && (
-              <p className="text-sm text-muted-foreground">Nothing flagged yet.</p>
-            )}
-            {analytics.repeatOffenders.map((r: any) => (
-              <div key={r.brand} className="flex items-center justify-between text-sm">
-                <span className="min-w-0 truncate">{r.brand}</span>
-                <span className="shrink-0 text-xs text-muted-foreground">
-                  {r.fail} FAIL / {r.total} scans
-                </span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Violations by state</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            {analytics.byState.length === 0 && (
-              <p className="text-sm text-muted-foreground">No geotagged scans yet.</p>
-            )}
-            {analytics.byState.map((s: any) => (
-              <div key={s.state} className="flex items-center justify-between text-sm">
-                <span className="min-w-0 truncate">
-                  {s.state}
-                  <span className="ml-1 text-xs text-muted-foreground">
-                    ({s.districts} district{s.districts === 1 ? "" : "s"})
-                  </span>
-                </span>
-                <span className="shrink-0 text-xs text-muted-foreground">
-                  {s.fail} FAIL / {s.total} scans
-                </span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      <RecentScansSection onViewAll={onViewRepository} />
+      {/* Most Frequent Violations - Rich List */}
+      <Card className="border-none shadow-soft rounded-3xl bg-card">
+        <CardHeader className="border-b bg-muted/10 px-6 py-4">
+          <CardTitle className="font-serif text-xl flex items-center gap-2">
+            <Gavel className="size-5 text-[var(--pastel-red-fg)]" /> Most Frequent Violations
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          {analytics.violationTypes.length === 0 ? (
+            <div className="p-8 text-center text-sm text-muted-foreground">No violations recorded yet.</div>
+          ) : (
+            <div className="divide-y divide-border/50">
+              {analytics.violationTypes.map((v: any, index: number) => (
+                <div
+                  key={v.category}
+                  className="flex items-center justify-between gap-4 p-4 px-6 hover:bg-muted/30 transition-colors"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
+                      <AlertTriangle className="size-4" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">{v.category}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-red-500 bg-red-50 px-2 py-0.5 rounded-sm">High Severity</span>
+                        <span className="text-xs flex items-center text-muted-foreground">
+                          <TrendingUp className="size-3 mr-1 text-amber-500" /> Action required
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-lg font-bold font-serif">{v.count}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Flags</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
@@ -526,14 +689,14 @@ function NewInspection() {
   );
 }
 
-function Repository() {
+function Repository({ consumerOnly }: { consumerOnly?: boolean }) {
   const navigate = useNavigate();
   const [decision, setDecision] = useState("all");
   const [category, setCategory] = useState("all");
   const [search, setSearch] = useState("");
 
   const scans = useQuery(api.scans.listScans, {
-    portalRole: undefined,
+    portalRole: consumerOnly ? "consumer" : undefined,
     decision: decision as "all" | "PASS" | "FAIL" | "REVIEW",
     category: category,
     search: search || undefined,
@@ -544,109 +707,109 @@ function Repository() {
     const set = new Set((scans ?? []).map((s: any) => s.category));
     return ["all", ...[...set].sort()];
   }, [scans]);
-
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <Select value={decision} onValueChange={setDecision}>
-          <SelectTrigger className="w-40">
-            <SelectValue placeholder="Verdict" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All verdicts</SelectItem>
-            <SelectItem value="PASS">✅ PASS</SelectItem>
-            <SelectItem value="FAIL">❌ FAIL</SelectItem>
-            <SelectItem value="REVIEW">⚠️ REVIEW</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger className="w-48">
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((c: string) => (
-              <SelectItem key={c} value={c}>
-                {c === "all" ? "All categories" : c}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Input
-          className="w-64"
-          placeholder="Search brand / product / scan ID…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
-
-      {!scans && (
-        <div className="space-y-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={i} className="h-16 w-full" />
-          ))}
+    <Card className="border-none shadow-soft rounded-3xl bg-card overflow-hidden">
+      <CardHeader className="bg-muted/10 border-b pb-4 px-6 pt-6">
+        <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
+          <CardTitle className="font-serif text-xl flex items-center gap-2">
+            <Database className="size-5 text-primary" />
+            Compliance History
+          </CardTitle>
+          <div className="flex gap-3">
+            <Select value={decision} onValueChange={setDecision}>
+              <SelectTrigger className="w-[140px] rounded-full">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent className="rounded-2xl">
+                <SelectItem value="all">All Statuses</SelectItem>
+                <SelectItem value="PASS">Compliant</SelectItem>
+                <SelectItem value="FAIL">Non-Compliant</SelectItem>
+                <SelectItem value="REVIEW">Needs Review</SelectItem>
+              </SelectContent>
+            </Select>
+            <Input
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-[200px] rounded-full"
+            />
+          </div>
         </div>
-      )}
-
-      {scans && scans.length === 0 && (
-        <Card>
-          <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            No scans match these filters yet — run an inspection to populate the
-            repository.
-          </CardContent>
-        </Card>
-      )}
-
-      <div className="space-y-2">
-        {scans?.map((s: any) => (
-          <Card
-            key={s._id}
-            className="cursor-pointer py-3 transition-shadow hover:shadow-md"
-            onClick={() => navigate(`/notice/${s.scanId}`)}
-          >
-            <CardContent className="flex flex-wrap items-center gap-3 px-4">
-              <StatusChip status={s.decision} />
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold">
-                  {s.brand ?? "⚠️ Unidentified brand"} — {s.productName ?? "unidentified product"}
-                </p>
-                <p className="truncate text-xs text-muted-foreground">
-                  {s.scanId} · {s.category} · {s.source} ·{" "}
-                  {new Date(s.timestamp).toLocaleString("en-IN", {
-                    day: "2-digit",
-                    month: "short",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                  {s.state ? ` · ${s.district ?? ""}, ${s.state}` : ""}
-                </p>
-              </div>
-              <div className="flex shrink-0 items-center gap-2 text-xs">
-                <span className="text-emerald-700 dark:text-emerald-300">✅ {s.passCount}</span>
-                <span className="text-red-700 dark:text-red-300">❌ {s.failCount}</span>
-                <span className="text-amber-700 dark:text-amber-300">⚠️ {s.reviewCount}</span>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`/notice/${s.scanId}`);
-                  }}
-                >
-                  <FileText className="mr-1 h-3.5 w-3.5" /> Notice
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
+      </CardHeader>
+      <CardContent className="p-0">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-muted/30 text-muted-foreground text-xs uppercase font-medium">
+              <tr>
+                <th className="px-6 py-4">Scan Ref</th>
+                <th className="px-6 py-4">Date</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y border-t">
+              {!scans && (
+                <tr>
+                  <td colSpan={4} className="px-6 py-12 text-center">
+                    <Loader2 className="size-6 animate-spin mx-auto text-muted-foreground" />
+                  </td>
+                </tr>
+              )}
+              {scans?.length === 0 && (
+                <tr>
+                  <td colSpan={4} className="px-6 py-12 text-center text-muted-foreground">
+                    No scans found.
+                  </td>
+                </tr>
+              )}
+              {scans?.map((s: any) => (
+                <tr key={s._id} className="hover:bg-muted/20 transition-colors">
+                  <td className="px-6 py-4 font-mono text-xs text-muted-foreground">{s.scanId.slice(0, 12)}...</td>
+                  <td className="px-6 py-4 font-medium">
+                    {new Date(s.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric" })}
+                  </td>
+                  <td className="px-6 py-4">
+                    <Badge className={`rounded-full px-3 py-1 ${
+                      s.decision === "PASS" ? "badge-pass" :
+                      s.decision === "FAIL" ? "badge-fail" : "badge-review"
+                    }`}>
+                      {s.decision}
+                    </Badge>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <Button variant="ghost" size="sm" asChild className="rounded-full text-[var(--pastel-lavender-fg)] hover:bg-[var(--pastel-lavender)]/20">
+                      <a href={`/notice/${s.scanId}`} target="_blank" rel="noreferrer">
+                        View Report <ArrowRight className="ml-2 size-3" />
+                      </a>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
 export default function Dashboard() {
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
   const seed = useMutation(api.scans.seedExampleCases);
-  const [tab, setTab] = useState("overview");
+  
+  // Consumers start on consumer-overview, Officers on overview
+  const [tab, setTab] = useState(user?.role === "consumer" ? "consumer-overview" : "overview");
+  
+  // If user role changes (e.g. log in loads), enforce correct tab
+  useEffect(() => {
+    if (user?.role === "consumer" && !tab.startsWith("consumer-")) {
+      setTab("consumer-overview");
+    } else if (user?.role === "officer" && tab.startsWith("consumer-")) {
+      setTab("overview");
+    }
+  }, [user?.role, tab]);
+  const [heatmapOpen, setHeatmapOpen] = useState(false);
   const [dbStatus, setDbStatus] = useState<{
     provider?: string;
     databaseName?: string;
@@ -686,118 +849,168 @@ export default function Dashboard() {
       toast.error("Could not clear repository.");
     }
   };
-
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-8">
-      {/* Top back navigation */}
-      <div className="mb-4 flex items-center justify-between">
-        <Button
-          id="dashboard-back-btn"
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            if (window.history.length > 1) {
-              navigate(-1);
-            } else {
-              navigate("/");
-            }
-          }}
-          className="h-8 gap-1.5 px-2.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </Button>
-        <div className="flex items-center gap-2">
-          <Button
-            id="dashboard-to-scan-btn"
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate("/scan")}
-            className="h-8 gap-1 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <ScanLine className="h-3.5 w-3.5" />
-            Consumer Scan
-          </Button>
-          <Button
-            id="dashboard-home-btn"
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate("/")}
-            className="h-8 text-xs text-muted-foreground hover:text-foreground"
-          >
-            Home
-          </Button>
-        </div>
-      </div>
-
-      <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <div className="flex flex-wrap items-center gap-2.5">
-            <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-              <ClipboardList className="h-6 w-6 text-primary" />
-              Enforcement Dashboard
-            </h1>
-            <Badge
-              id="dashboard-mongodb-badge"
-              variant="outline"
-              className={`h-6 gap-1.5 text-[11px] font-medium ${
-                dbStatus?.connected
-                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
-                  : dbStatus?.uriConfigured
-                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-                  : "bg-primary/10 text-primary border-primary/20"
-              }`}
+    <div className="flex flex-col h-screen bg-[#fafafa] text-foreground overflow-hidden">
+      
+      {/* ── TOP NAVIGATION BAR ── */}
+      <header className="shrink-0 border-b bg-white/80 backdrop-blur-md z-30 shadow-[0_1px_0_0_rgba(0,0,0,0.06)]">
+        <div className="flex items-center justify-between px-6 h-14">
+          {/* Left: logo + location */}
+          <div className="flex items-center gap-4 shrink-0">
+            <div
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
             >
-              <Database className="h-3 w-3" />
-              {dbStatus?.connected
-                ? `MongoDB: ${dbStatus.databaseName || "Connected"}`
-                : "MongoDB Database"}
-            </Badge>
+              <ScanLine className="size-5 text-[var(--pastel-lavender-fg)]" />
+              <span className="font-serif text-lg font-bold">ComplyScan</span>
+            </div>
+            <div className="h-5 w-px bg-border hidden sm:block" />
+            <div className="hidden sm:block">
+              <LocationSelector />
+            </div>
           </div>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Vision-based Legal Metrology inspections — evidence-anchored PASS / FAIL /
-            REVIEW verdicts with statutory rule citations.
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => void onSeed()}>
-            <Gavel className="mr-2 h-4 w-4" /> Load specimen cases
-          </Button>
-          <Button
-            id="dashboard-clear-btn"
-            variant="ghost"
-            size="sm"
-            onClick={() => void onClear()}
-            className="text-xs text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-          >
-            <Trash2 className="mr-1.5 h-3.5 w-3.5" /> Clear repository
-          </Button>
+
+          {/* Right: underline tabs + actions */}
+          <div className="flex items-center gap-6 shrink-0 h-14">
+            <nav className="flex items-end gap-1 h-14">
+              {[
+                { id: "overview", label: "Analytics", icon: <BarChart3 className="size-4" />, roles: ["officer"] },
+                { id: "repository", label: "Repository", icon: <Database className="size-4" />, roles: ["officer"] },
+                { id: "inspect", label: "New Inspection", icon: <Camera className="size-4" />, roles: ["officer"] },
+                
+                { id: "consumer-overview", label: "My Dashboard", icon: <BarChart3 className="size-4" />, roles: ["consumer"] },
+                { id: "consumer-repository", label: "Scan History", icon: <Database className="size-4" />, roles: ["consumer"] },
+                { id: "consumer-inspect", label: "New Scan", icon: <Camera className="size-4" />, roles: ["consumer"] },
+              ].filter(item => item.roles.includes(user?.role || "officer")).map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setTab(item.id)}
+                  className={`flex items-center gap-2 px-4 h-14 text-sm font-semibold border-b-2 transition-all ${
+                    tab === item.id
+                      ? "border-[var(--pastel-lavender-fg)] text-[var(--pastel-lavender-fg)]"
+                      : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
+                  }`}
+                >
+                  {item.icon}
+                  <span className="hidden sm:inline">{item.label}</span>
+                </button>
+              ))}
+            </nav>
+
+            <div className="h-5 w-px bg-border hidden sm:block" />
+
+            <div className="flex items-center shrink-0 gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full text-muted-foreground hover:text-destructive"
+                onClick={() => { signOut(); navigate("/auth"); }}
+              >
+                <LogOut className="size-4" />
+              </Button>
+            </div>
+          </div>
         </div>
       </header>
 
-      <Tabs value={tab} onValueChange={setTab} className="space-y-5">
-        <TabsList className="grid w-full max-w-2xl grid-cols-4">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="inspect">New inspection</TabsTrigger>
-          <TabsTrigger value="repository">Repository</TabsTrigger>
-          <TabsTrigger value="grounding" className="gap-1">
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            Intelligence
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="overview">
-          <AnalyticsOverview onViewRepository={() => setTab("repository")} />
-        </TabsContent>
-        <TabsContent value="inspect">
-          <NewInspection />
-        </TabsContent>
-        <TabsContent value="repository">
-          <Repository />
-        </TabsContent>
-        <TabsContent value="grounding">
-          <GroundingPanel />
-        </TabsContent>
-      </Tabs>
-    </main>
+      <ViolationHeatmapModal open={heatmapOpen} onOpenChange={setHeatmapOpen} />
+
+      {/* ── PERSONALIZED GREETING STRIP ── */}
+      {tab === "overview" && (
+        <div className="shrink-0 px-6 pt-6 pb-0 max-w-7xl mx-auto w-full">
+          <div className="rounded-2xl bg-gradient-to-r from-[var(--pastel-lavender)]/40 to-[var(--pastel-green)]/30 border border-white/60 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-[var(--pastel-lavender-fg)] mb-0.5">Officer Portal</p>
+              <h2 className="font-serif text-2xl font-bold text-foreground">
+                Good {new Date().getHours() < 12 ? "Morning" : new Date().getHours() < 17 ? "Afternoon" : "Evening"}, Inspector 👋
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                {new Date().toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                size="sm"
+                onClick={() => navigate("/scan")}
+                className="rounded-full bg-foreground text-background hover:bg-foreground/90 font-semibold shadow-sm"
+              >
+                <Camera className="mr-1.5 h-4 w-4" /> Start Scanning
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setHeatmapOpen(true)}
+                className="rounded-full font-semibold hidden sm:flex"
+              >
+                <MapPin className="mr-1.5 h-4 w-4" /> View Map
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {tab === "consumer-overview" && (
+        <div className="shrink-0 px-6 pt-6 pb-0 max-w-7xl mx-auto w-full animate-in fade-in slide-in-from-top-2 duration-500">
+          <div className="rounded-2xl bg-gradient-to-r from-[var(--pastel-green)]/30 to-[var(--pastel-lavender)]/20 border border-white/60 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-[var(--pastel-green-fg)] mb-0.5">Consumer Portal</p>
+              <h2 className="font-serif text-2xl font-bold text-foreground">
+                Good {new Date().getHours() < 12 ? "Morning" : new Date().getHours() < 17 ? "Afternoon" : "Evening"} 👋
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                Protect yourself and others. Scan products to verify compliance.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                size="sm"
+                onClick={() => setTab("consumer-inspect")}
+                className="rounded-full bg-[var(--pastel-green)] text-[var(--pastel-green-fg)] hover:bg-[var(--pastel-green)]/90 font-semibold shadow-sm"
+              >
+                <Camera className="mr-1.5 h-4 w-4" /> Start Scanning
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── MAIN CONTENT ── */}
+      <main className="flex-1 overflow-auto">
+        <div className="px-6 py-6 max-w-7xl mx-auto w-full">
+          {tab === "overview" && (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <AnalyticsOverview onViewRepository={() => setTab("repository")} />
+            </div>
+          )}
+          {tab === "repository" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <Repository />
+            </div>
+          )}
+          {tab === "inspect" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <NewInspection />
+            </div>
+          )}
+          
+          {/* CONSUMER TABS */}
+          {tab === "consumer-overview" && (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <ConsumerOverview onViewRepository={() => setTab("consumer-repository")} />
+            </div>
+          )}
+          {tab === "consumer-repository" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <Repository consumerOnly />
+            </div>
+          )}
+          {tab === "consumer-inspect" && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <NewConsumerScan />
+            </div>
+          )}
+        </div>
+      </main>
+    </div>
   );
 }
