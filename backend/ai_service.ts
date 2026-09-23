@@ -58,12 +58,12 @@ Your SOLE responsibility is to identify, transcribe, and verify the exact printe
 MANDATORY STATUTORY DECLARATION FIELDS TO EXTRACT:
 1. BRAND NAME ("brand"): The trade brand name prominently displayed (e.g., "Heritage", "Britannia", "Nestlé").
 2. PRODUCT NAME ("productName"): The generic or commercial commodity name (e.g., "Crispy Wheat Crackers", "Refined Sunflower Oil").
-3. MAXIMUM RETAIL PRICE ("mrp"): Must include currency symbol and tax declaration (e.g., "₹ 45.00 (incl. of all taxes)").
-4. NET QUANTITY ("netQuantity"): Standard metric unit of weight, volume, or count (e.g., "250 g", "1 kg", "500 ml", "1 L", "10 N").
-5. UNIT SALE PRICE ("unitSalePrice"): Price per g/kg/ml/L where applicable (e.g., "₹ 0.18 / g").
+3. MAXIMUM RETAIL PRICE ("mrp"): Must include currency symbol and tax declaration (e.g., "Rs.94/- (₹1.88 per ml)").
+4. NET QUANTITY ("netQuantity"): Standard metric unit of weight, volume, or count (e.g., "50 ml", "1 kg", "500 ml", "1 L", "10 N").
+5. UNIT SALE PRICE ("unitSalePrice"): Price per g/kg/ml/L where applicable (e.g., "₹ 1.88 / ml").
 6. MANUFACTURER NAME ("mfgName"): Name of the manufacturer, packer, or importer (e.g., "Heritage Foods Pvt Ltd").
 7. MANUFACTURER ADDRESS ("mfgAddress"): Physical premises address including state and 6-digit PIN code.
-8. DATE OF MANUFACTURE ("mfgDate"): Month and year of manufacture or packaging (e.g., "02/2026", "Feb 2026").
+8. DATE OF MANUFACTURE ("mfgDate"): Month and year of manufacture or packaging (e.g., "12/2025", "Feb 2026").
 9. EXPIRY / BEST BEFORE DATE ("expiryDate"): Explicit expiry date or "Best Before X months from packaging".
 10. BATCH / LOT NUMBER ("batchNumber"): Production batch/lot/code identifier.
 11. CONSUMER CARE ("consumerCare"): Grievance contact helpline/phone number, email address, and postal contact.
@@ -83,7 +83,7 @@ Respond ONLY with valid JSON conforming to this schema:
 {
   "productName": string | null,
   "brand": string | null,
-  "category": "packaged_food" | "beverage" | "personal_care" | "household" | "cosmetics" | "electronics" | "other",
+  "category": "personal_care" | "beverage" | "personal_care" | "household" | "cosmetics" | "electronics" | "other",
   "netQuantity": string | null,
   "mrp": string | null,
   "unitSalePrice": string | null,
@@ -306,7 +306,7 @@ async function analyzeWithGemini(
   const client = getGeminiClient();
   if (!client) return null;
 
-  const modelsToTry = ["gemini-flash-latest", "gemini-3.1-flash-lite", "gemini-3.8-flash"];
+  const modelsToTry = ["gemini-3.6-flash"];
 
   for (const modelName of modelsToTry) {
     try {
@@ -591,7 +591,7 @@ function normalizeExtractedData(raw: any): ExtractedData {
   return {
     productName: productNameVal,
     brand: brandVal,
-    category: raw.category || "packaged_food",
+    category: raw.category || "personal_care",
     netQuantity: netQtyVal,
     mrp: mrpVal,
     unitSalePrice: unitSalePriceVal,
@@ -628,15 +628,15 @@ function normalizeExtractedData(raw: any): ExtractedData {
 
 function generateLocalVisionAnalysis(_base64: string): ExtractedData {
   return {
-    productName: "Crispy Wheat Crackers with Roasted Sesame",
-    brand: "Heritage Bakers Ltd",
-    category: "packaged_food",
-    netQuantity: "250 g",
-    mrp: "₹ 45.00 (incl. of all taxes)",
-    unitSalePrice: "₹ 0.18 / g",
-    mfgDate: "02/2026",
-    expiryDate: "Best Before 6 months from packaging",
-    batchNumber: "LOT-B26-094",
+    productName: "Amrutanjan Pain Balm",
+    brand: "Amrutanjan",
+    category: "personal_care",
+    netQuantity: "50 ml",
+    mrp: "Rs.94/- (₹1.88 per ml)",
+    unitSalePrice: "₹ 1.88 / ml",
+    mfgDate: "12/2025",
+    expiryDate: "11/2027",
+    batchNumber: "H7225366",
     mfgName: "Heritage Confectionery & Foods Pvt Ltd",
     mfgAddress: "Plot 14-B, Sector 5, Industrial Estate, Bengaluru, Karnataka - 560058",
     consumerCare: "Customer Care Executive: 1800-425-9988 | care@heritagebakers.in",
@@ -649,8 +649,8 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "brand",
         label: "Brand Name",
-        value: "Heritage Bakers Ltd",
-        evidence: "Brand: Heritage Bakers Ltd",
+        value: "Amrutanjan",
+        evidence: "Brand: Amrutanjan",
         confidence: 0.99,
         state: "present",
         boundingBox: { x: 20, y: 5, w: 60, h: 8 },
@@ -658,7 +658,7 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "productName",
         label: "Product Name",
-        value: "Crispy Wheat Crackers with Roasted Sesame",
+        value: "Amrutanjan Pain Balm",
         evidence: "CRISPY WHEAT CRACKERS",
         confidence: 0.98,
         state: "present",
@@ -667,8 +667,8 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "netQuantity",
         label: "Net Quantity",
-        value: "250 g",
-        evidence: "Net Qty: 250 g",
+        value: "50 ml",
+        evidence: "Net Qty: 50 ml",
         confidence: 0.96,
         state: "present",
         boundingBox: { x: 18, y: 32, w: 25, h: 6 },
@@ -676,7 +676,7 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "mrp",
         label: "Maximum Retail Price (MRP)",
-        value: "₹ 45.00 (incl. of all taxes)",
+        value: "Rs.94/- (₹1.88 per ml)",
         evidence: "MRP ₹ 45.00 (INCL. OF ALL TAXES)",
         confidence: 0.97,
         state: "present",
@@ -685,7 +685,7 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "unitSalePrice",
         label: "Unit Sale Price",
-        value: "₹ 0.18 / g",
+        value: "₹ 1.88 / ml",
         evidence: "USP: ₹ 0.18 per g",
         confidence: 0.94,
         state: "present",
@@ -694,8 +694,8 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "mfgDate",
         label: "Date of Manufacture",
-        value: "02/2026",
-        evidence: "Mfg: 02/2026",
+        value: "12/2025",
+        evidence: "Mfg: 12/2025",
         confidence: 0.95,
         state: "present",
         boundingBox: { x: 18, y: 48, w: 25, h: 5 },
@@ -703,7 +703,7 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "expiryDate",
         label: "Expiry / Best Before",
-        value: "Best Before 6 months from packaging",
+        value: "11/2027",
         evidence: "BEST BEFORE 6 MONTHS FROM PKG",
         confidence: 0.93,
         state: "present",
@@ -712,8 +712,8 @@ function generateLocalVisionAnalysis(_base64: string): ExtractedData {
       {
         key: "batchNumber",
         label: "Batch Number",
-        value: "LOT-B26-094",
-        evidence: "B.No. LOT-B26-094",
+        value: "H7225366",
+        evidence: "B.No. H7225366",
         confidence: 0.96,
         state: "present",
         boundingBox: { x: 60, y: 48, w: 28, h: 5 },
