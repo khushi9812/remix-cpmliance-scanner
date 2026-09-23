@@ -359,6 +359,7 @@ export async function transcribePackageVision(
   mimeType: string = "image/jpeg",
   options?: VisionScanOptions
 ): Promise<VisionTranscriptionResult> {
+  console.log("DEBUG: GEMINI_API_KEY is", process.env.GEMINI_API_KEY ? "SET" : "NOT SET");
   const provider = options?.preferredEngine || process.env.AI_PROVIDER || "auto";
 
   // 1. If OpenAI explicitly preferred
